@@ -1,9 +1,9 @@
 # lite-crud-template
 
-最近的开发中想到，自己经常会有一些很快很闪的 idea，但是每次都要创建 project & config 但是每次都是重复的一些需求，在我看来是很浪费时间的，这个时候我突然萌生了一个维护一个快速开发的模版的想法，我层级也用过一些开源的，他们的很完善，也很大，封装的也很 nice，但是对于我的来说，我总觉得有点大，有点为了快速开发而开发，少了很多 dever 的灵魂。
-## 初始的一些想法
+In my recent development, I often have some quick and flashing ideas, but I have to create projects&config every time with repetitive requirements. In my opinion, it is a waste of time. At this time, I suddenly had the idea of maintaining a template for rapid development. I have also used some open source templates in my hierarchy, which are very comprehensive, large, and well packaged. However, for me, I always feel that they are a bit too big and developed for rapid development, lacking a lot of developer soul.
+## Some initial ideas
 
-想要基于
+The technology used
 - spring-boot 3.3.2
 - mybatis-plus
 - docker
@@ -11,4 +11,4 @@
 - vue3
 - vite
 - ts
-  基于以上的技术开发一套可以快速开发的架子，但是又不缺失给开发者大展手脚的地方
+  Develop a set of frameworks based on the above technologies that can be quickly developed, while also providing opportunities for developers to showcase their skills
