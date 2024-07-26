@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: lite-crud-template
+  docker:
+    compose:
+      host: 101.35.52.157
+      enabled: false # 关闭 docker compose
+  profiles:
+    active: local
+# MYSQL CONFIG
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/demo_test?allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: ${mysql.password}
+    hikari:
+      maximum-pool-size: 5
+server:
+  port: 369
+mybatis-plus:
+  mapper-locations: /mapper/**/*.xml
