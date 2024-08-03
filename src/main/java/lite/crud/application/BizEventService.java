@@ -5,4 +5,6 @@ package lite.crud.application;
  * @since 2024/7/26
  **/
 public interface BizEventService {
+
+
 }
