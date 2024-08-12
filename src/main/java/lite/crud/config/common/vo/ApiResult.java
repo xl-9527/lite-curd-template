@@ -12,8 +12,9 @@ import lombok.Setter;
 @Setter
 public class ApiResult<T> {
 
-    public ApiResult(final int code, final String msg, final T data) {
+    public ApiResult(final boolean success, final int code, final String msg, final T data) {
         this.code = code;
+        this.success = success;
         this.msg = msg;
         this.data = data;
     }
@@ -29,19 +30,24 @@ public class ApiResult<T> {
     private String msg;
 
     /**
+     * Is ok ?
+     */
+    private boolean success;
+
+    /**
      * 携带的数据集合
      */
     private T data;
 
     public static ApiResult<String> success() {
-        return new ApiResult<>(ResponseRestCode.OK, null, null);
+        return new ApiResult<>(true, ResponseRestCode.OK, null, null);
     }
 
     public static <T> ApiResult<T> success(final T data) {
-        return new ApiResult<>(ResponseRestCode.OK, null, data);
+        return new ApiResult<>(true, ResponseRestCode.OK, null, data);
     }
 
     public static ApiResult<String> fail(String msg) {
-        return new ApiResult<>(ResponseRestCode.SERVER_ERROR, msg, null);
+        return new ApiResult<>(false, ResponseRestCode.SERVER_ERROR, msg, null);
     }
 }
