@@ -28,10 +28,9 @@ public class SerializableConfig {
     public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder) {
         final ObjectMapper objectMapper = builder.createXmlMapper(false).build();
 
-        // long -> string
         objectMapper.registerModule(
                 new SimpleModule()
-                        .addSerializer(Long.class, new ToStringSerializer())
+                        .addSerializer(Long.class, new ToStringSerializer()) // long -> string
                         .addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
                         .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
         );
