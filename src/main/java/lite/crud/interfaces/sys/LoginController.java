@@ -1,9 +1,9 @@
 package lite.crud.interfaces.sys;
 
-import lite.crud.application.biz.LoginService;
+import lite.crud.application.handler.sys.LoginService;
 import lite.crud.config.common.vo.ApiResult;
-import lite.crud.domain.biz.sys.dto.LoginDto;
-import lite.crud.domain.biz.sys.vo.LoginUserInfoVo;
+import lite.crud.domain.sys.dto.LoginDto;
+import lite.crud.domain.sys.vo.LoginUserInfoVo;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

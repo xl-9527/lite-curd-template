@@ -4,18 +4,21 @@ import lite.crud.application.BizEventService;
 import lite.crud.application.util.dto.PageParams;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xl-9527
  * @since 2024/8/2
  */
-public interface BizEventCrudService<BEAN, DTO, QueryDto extends PageParams> extends BizEventService {
+public interface BizEventCrudService<VO, DTO, QueryDto extends PageParams> extends BizEventService {
 
-    void doCreate(final DTO dto);
+	void doCreate(final DTO dto);
 
-    void doUpdate(final DTO dto);
+	void doUpdate(final DTO updateMap);
 
-    Boolean doDelete(final List<Integer> ids);
+	void doUpdate(final Map<String, Object> updateMap);
 
-    List<BEAN> doQuery(QueryDto queryDto);
+	Boolean doDelete(final List<Integer> ids);
+
+	List<VO> doQuery(QueryDto queryDto);
 }

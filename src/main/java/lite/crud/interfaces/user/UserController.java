@@ -1,4 +1,4 @@
-package lite.crud.interfaces.biz;
+package lite.crud.interfaces.user;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

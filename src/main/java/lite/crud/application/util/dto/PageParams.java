@@ -11,15 +11,15 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class PageParams implements Serializable {
+public class PageParams extends BaseParams implements Serializable {
 
-    /**
-     * 分页
-     */
-    private Integer pageIndex;
+	/**
+	 * 分页
+	 */
+	private Integer pageIndex;
 
-    /**
-     * 分页大小
-     */
-    private Integer pageSize;
+	/**
+	 * 分页大小
+	 */
+	private Integer pageSize;
 }

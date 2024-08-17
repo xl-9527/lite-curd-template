@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lite.crud.infrastructure.persistence.mysql.user.UserInfoMapper">
+
+	<select id="doQuery" resultType="lite.crud.domain.user.vo.UserInfoVo">
+		select
+			*
+		from user_info
+		<where>
+			<if test="username != null and username != ''">
+				and username = #{username}
+			</if>
+			<if test="password != null and password != ''">
+				and password = #{password}
+			</if>
+		</where>
+	</select>
+</mapper>

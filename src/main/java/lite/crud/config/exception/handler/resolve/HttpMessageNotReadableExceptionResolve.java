@@ -1,5 +1,6 @@
-package lite.crud.config.exception.handler;
+package lite.crud.config.exception.handler.resolve;
 
+import lite.crud.config.exception.handler.AbsExceptionHandler;
 import lite.crud.config.exception.vo.ExceptionHandlerVo;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Component;
