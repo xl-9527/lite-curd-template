@@ -1,5 +1,7 @@
 package lite.crud.application.util.opc.json;
 
+import lite.crud.application.util.extend.SpringContextHolder;
+
 import java.util.List;
 
 /**
@@ -16,7 +18,7 @@ public class JSONOpcUtil implements JSONOpc {
 	public final static JSONOpcUtil DEFAULT = new JSONOpcUtil(JSONOpcEnum.JACKSON);
 
 	public JSONOpcUtil(JSONOpcEnum jsonOpcEnum) {
-		this.jsonOpc = jsonOpcEnum.getJSONOpc();
+		this.jsonOpc = jsonOpcEnum.getJSONOpc(SpringContextHolder.getApplicationContext());
 	}
 
 	@Override
