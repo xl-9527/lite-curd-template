@@ -11,5 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration(proxyBeanMethods = false)
 public class AopConfiguration {
 
-
+    public void aopHandler() {
+        // MCP.put();
+    }
 }

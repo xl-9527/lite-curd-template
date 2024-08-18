@@ -11,6 +11,6 @@ import java.io.Serializable;
 public record UserInfoVo(Integer id, String username, String password) implements Serializable {
 
 	public LoginUserInfoVo toLoginUserInfoVo() {
-		return new LoginUserInfoVo(id, username, password);
+		return new LoginUserInfoVo(id, username, null);
 	}
 }

@@ -25,7 +25,7 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @PostMapping()
+    @PostMapping
     public ApiResult<LoginUserInfoVo> login(@RequestBody final LoginDto loginDto) {
         return ApiResult.success(loginService.login(loginDto));
     }
