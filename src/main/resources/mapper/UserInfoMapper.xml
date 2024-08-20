@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="lite.crud.infrastructure.persistence.mysql.user.UserInfoMapper">
 
+	<insert id="insert">
+		insert into user_info (username, password)
+		values (#{username}, #{password})
+	</insert>
+
+	<delete id="deleteByIds">
+		delete from user_info where id in
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
 	<select id="doQuery" resultType="lite.crud.domain.user.vo.UserInfoVo">
 		select
 			*

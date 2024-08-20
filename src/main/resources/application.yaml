@@ -17,5 +17,7 @@ spring:
       maximum-pool-size: 5
 server:
   port: 369
-mybatis-plus:
+mybatis:
   mapper-locations: /mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

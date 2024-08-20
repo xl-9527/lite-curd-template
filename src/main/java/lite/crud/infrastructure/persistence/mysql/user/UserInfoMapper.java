@@ -1,6 +1,5 @@
 package lite.crud.infrastructure.persistence.mysql.user;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import lite.crud.domain.user.bo.UserInfo;
 import lite.crud.domain.user.dto.UserInfoQueryDto;
 import lite.crud.domain.user.vo.UserInfoVo;
@@ -13,7 +12,11 @@ import java.util.List;
  * @since 2024/8/17
  */
 @Mapper
-public interface UserInfoMapper extends BaseMapper<UserInfo> {
+public interface UserInfoMapper {
 
 	List<UserInfoVo> doQuery(UserInfoQueryDto userInfoQueryDto);
+
+	void insert(UserInfo dbBean);
+
+	int deleteByIds(List<Integer> ids);
 }
