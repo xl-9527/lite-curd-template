@@ -1,5 +1,6 @@
 package lite.crud.domain.sys.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lite.crud.domain.user.dto.UserInfoQueryDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,16 +18,16 @@ public class LoginDto implements Serializable {
 	/**
 	 * Login username for this
 	 */
+	@NotEmpty(message = "username 不可以为空")
 	private String username;
 
 	/**
 	 * login password
 	 */
+	@NotEmpty(message = "password 不可以为空")
 	private String password;
 
 	public UserInfoQueryDto toUserInfoQueryDto() {
-		final UserInfoQueryDto infoQueryDto = new UserInfoQueryDto(this.username, this.password);
-
-		return infoQueryDto;
+		return new UserInfoQueryDto(this.username, this.password);
 	}
 }

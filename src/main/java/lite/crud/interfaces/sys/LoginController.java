@@ -4,6 +4,7 @@ import lite.crud.application.handler.sys.LoginService;
 import lite.crud.config.common.vo.ApiResult;
 import lite.crud.domain.sys.dto.LoginDto;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public ApiResult<LoginUserInfoVo> login(@RequestBody final LoginDto loginDto) {
+    public ApiResult<LoginUserInfoVo> login(@RequestBody @Validated final LoginDto loginDto) {
         return ApiResult.success(loginService.login(loginDto));
     }
 }
