@@ -5,9 +5,11 @@ In my recent development, I often have some quick and flashing ideas, but I have
 
 The technology used
 - spring-boot 3.3.2
-- mybatis-plus
+- mybatis 3.0.3
 - docker
 - mysql 8.0
+
+Front-end technology usage
 - vue3
 - vite
 - ts
