@@ -25,6 +25,6 @@ public abstract class AbsExceptionHandler<E extends Exception> implements Except
 
     @Override
     public boolean support(final Exception e) {
-        return e.getClass().isAssignableFrom(exceptionClass);
+        return e.getClass().getName().equals(exceptionClass.getName());
     }
 }
