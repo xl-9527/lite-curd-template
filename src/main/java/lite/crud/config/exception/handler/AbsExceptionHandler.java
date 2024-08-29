@@ -2,6 +2,8 @@ package lite.crud.config.exception.handler;
 
 import lite.crud.config.exception.vo.ExceptionHandlerVo;
 
+import java.util.Objects;
+
 /**
  * @author xl-9527
  * @since 2024/8/12
@@ -25,6 +27,10 @@ public abstract class AbsExceptionHandler<E extends Exception> implements Except
 
     @Override
     public boolean support(final Exception e) {
+        if (Objects.isNull(e) || Objects.isNull(exceptionClass)) {
+            return false;
+        }
+
         return e.getClass().getName().equals(exceptionClass.getName());
     }
 }
