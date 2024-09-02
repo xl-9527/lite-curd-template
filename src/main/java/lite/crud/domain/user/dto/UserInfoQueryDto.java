@@ -14,21 +14,54 @@ import java.io.Serializable;
 @Setter
 public class UserInfoQueryDto extends PageParams implements Serializable {
 
-	public UserInfoQueryDto() {
+    public UserInfoQueryDto() {
+    }
+
+    public UserInfoQueryDto(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    /**
+     * Login username for this
+     */
+    private String username;
+
+    /**
+     * login password
+     */
+    private String password;
+
+
+	public UserInfoQueryDtoBuilder builder() {
+		return new UserInfoQueryDtoBuilder(this);
 	}
 
-	public UserInfoQueryDto(String username, String password) {
-		this.username = username;
-		this.password = password;
+	public static class UserInfoQueryDtoBuilder {
+
+		private final UserInfoQueryDto userInfoQueryDto;
+
+		private UserInfoQueryDtoBuilder(UserInfoQueryDto userInfoQueryDto) {
+			this.userInfoQueryDto = userInfoQueryDto;
+		}
+
+		public UserInfoQueryDtoBuilder username(String username) {
+			userInfoQueryDto.username = username;
+			return this;
+		}
+
+		public UserInfoQueryDtoBuilder password(String password) {
+			userInfoQueryDto.password = password;
+			return this;
+		}
+
+		public UserInfoQueryDtoBuilder ids(Serializable[] ids) {
+			userInfoQueryDto.setIds(ids);
+			return this;
+		}
+
+		public UserInfoQueryDto build() {
+			return userInfoQueryDto;
+		}
 	}
-
-	/**
-	 * Login username for this
-	 */
-	private String username;
-
-	/**
-	 * login password
-	 */
-	private String password;
 }

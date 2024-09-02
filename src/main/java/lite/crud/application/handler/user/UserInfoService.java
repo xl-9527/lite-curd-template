@@ -4,6 +4,7 @@ package lite.crud.application.handler.user;
 import lite.crud.application.handler.user.support.UserInfoCrudServiceSupport;
 import lite.crud.domain.user.dto.UserInfoQueryDto;
 import lite.crud.domain.user.vo.UserInfoVo;
+import lite.crud.infrastructure.InvokeInfrastructure;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -17,13 +18,14 @@ import java.util.Optional;
 @Service
 public class UserInfoService {
 
-	private final UserInfoCrudServiceSupport userInfoCrudServiceSupport;
+    private final InvokeInfrastructure<UserInfoCrudServiceSupport> infrastructure;
 
-	public UserInfoService(UserInfoCrudServiceSupport userInfoCrudServiceSupport) {
-		this.userInfoCrudServiceSupport = userInfoCrudServiceSupport;
-	}
+    public UserInfoService(final InvokeInfrastructure<UserInfoCrudServiceSupport> infrastructure) {
+        this.infrastructure = infrastructure;
+    }
 
-	public List<UserInfoVo> getUserInfo(final UserInfoQueryDto userInfoQueryDto) {
-		return Optional.ofNullable(userInfoCrudServiceSupport.doQuery(userInfoQueryDto)).orElse(Collections.emptyList());
-	}
+    public List<UserInfoVo> getUserInfo(final UserInfoQueryDto userInfoQueryDto) {
+        final List<UserInfoVo> userInfoVos = infrastructure.invoke().doQuery(userInfoQueryDto);
+        return Optional.ofNullable(userInfoVos).orElse(Collections.emptyList());
+    }
 }

@@ -14,9 +14,9 @@ import java.util.List;
 @Mapper
 public interface UserInfoMapper {
 
-	List<UserInfoVo> doQuery(UserInfoQueryDto userInfoQueryDto);
+    List<UserInfoVo> doQuery(UserInfoQueryDto userInfoQueryDto);
 
-	void insert(UserInfo dbBean);
+    void insert(UserInfo dbBean);
 
-	int deleteByIds(List<Integer> ids);
+    int deleteByIds(List<Integer> ids);
 }

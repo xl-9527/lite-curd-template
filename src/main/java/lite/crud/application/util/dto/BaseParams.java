@@ -18,4 +18,9 @@ public class BaseParams implements Serializable {
 	 * 当前登录用户
 	 */
 	private UserInfoVo userInfoVo;
+
+	/**
+	 * 主键 IDS
+	 */
+	private Serializable[] ids;
 }
