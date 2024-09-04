@@ -39,14 +39,18 @@ import java.util.LinkedHashMap;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(final HttpSecurity http, final AuthenticationManager authenticationManager, final DelegatingAuthenticationEntryPoint basicAuthenticationEntryPoint) throws Exception {
+    public SecurityFilterChain filterChain(final HttpSecurity http,
+                                           final AuthenticationManager authenticationManager,
+                                           final DelegatingAuthenticationEntryPoint basicAuthenticationEntryPoint,
+                                           final SysUsernamePasswordAuthenticationFilter sysUsernamePasswordAuthenticationFilter
+    ) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/sys/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .headers(heads -> heads.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin).cacheControl(HeadersConfigurer.CacheControlConfig::disable))
-                .addFilterBefore(new SysUsernamePasswordAuthenticationFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(sysUsernamePasswordAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterAt(new SysBasicAuthenticationFilter(authenticationManager, basicAuthenticationEntryPoint), BasicAuthenticationFilter.class)
                 .exceptionHandling(e ->
                         e.authenticationEntryPoint(basicAuthenticationEntryPoint)

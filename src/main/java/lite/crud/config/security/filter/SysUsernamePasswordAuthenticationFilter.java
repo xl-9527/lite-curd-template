@@ -9,27 +9,38 @@ import jakarta.servlet.http.HttpServletResponse;
 import lite.crud.application.util.opc.json.JSONOpcUtil;
 import lite.crud.config.common.vo.ApiResult;
 import lite.crud.domain.sys.dto.LoginDto;
+import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * @author xl-9527
  * @since 2024/9/3
  */
+@Service
 public class SysUsernamePasswordAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-    public SysUsernamePasswordAuthenticationFilter(final AuthenticationManager authenticationManager) {
+    private final RedisTemplate<String, Object> redisTemplate;
+    private static final String LOGIN_HASH_KEY = "LOGIN:USER";
+
+    public SysUsernamePasswordAuthenticationFilter(final AuthenticationManager authenticationManager, final RedisTemplate<String, Object> redisTemplate) {
         super(new AntPathRequestMatcher("/sys/login", "POST"), authenticationManager);
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
@@ -53,6 +64,17 @@ public class SysUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
                 password);
         // Allow subclasses to set the "details" property
         this.setDetails(request, authRequest);
+        if (redisTemplate.opsForHash().hasKey(LOGIN_HASH_KEY, username)) {
+            // has user info
+            final Object userInfo = redisTemplate.opsForHash().get(LOGIN_HASH_KEY, username);
+            if (userInfo instanceof LoginUserInfoVo loginUserInfoVo) {
+                final UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                        loginUserInfoVo, null, List.of(new SimpleGrantedAuthority("ADMIN"))
+                );
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                return authenticationToken;
+            }
+        }
         final Authentication authenticate = this.getAuthenticationManager().authenticate(authRequest);
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         return authenticate;
@@ -60,6 +82,11 @@ public class SysUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
 
     @Override
     protected void successfulAuthentication(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain, final Authentication authResult) throws IOException {
+        // save login userinfo -> redis
+        final Object principal = authResult.getPrincipal();
+        if (principal instanceof LoginUserInfoVo userDetails) {
+            redisTemplate.opsForHash().put(LOGIN_HASH_KEY, userDetails.getUsername(), userDetails);
+        }
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().print(JSONOpcUtil.DEFAULT.toJSONStr(ApiResult.success(authResult)));
     }

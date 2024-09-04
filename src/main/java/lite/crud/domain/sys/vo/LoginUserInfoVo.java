@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -17,6 +18,10 @@ import java.util.List;
 @Getter
 @Setter
 public class LoginUserInfoVo implements Serializable, UserDetails {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     public LoginUserInfoVo() {
     }
 
