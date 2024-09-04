@@ -52,7 +52,7 @@ public class SysUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
         UsernamePasswordAuthenticationToken authRequest = UsernamePasswordAuthenticationToken.unauthenticated(username,
                 password);
         // Allow subclasses to set the "details" property
-        setDetails(request, authRequest);
+        this.setDetails(request, authRequest);
         final Authentication authenticate = this.getAuthenticationManager().authenticate(authRequest);
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         return authenticate;
