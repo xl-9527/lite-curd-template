@@ -3,13 +3,12 @@ package lite.crud.domain.sys.vo;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * @author xl-9527
@@ -32,21 +31,20 @@ public class LoginUserInfoVo implements Serializable, UserDetails {
     }
 
     private Integer id;
+
+    /**
+     * 用户名字
+     */
     private String username;
+
+    /**
+     * 密码
+     */
     private String password;
+    private Collection<? extends GrantedAuthority> authorities;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ADMIN"));
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.username;
-    }
+    /**
+     * 登录时间
+     */
+    private LocalDateTime loginTime;
 }

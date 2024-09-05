@@ -23,9 +23,13 @@ public class SerializableConfig {
 
     /**
      * json config
-      */
+     */
     @Bean
-    public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder) {
+    public ObjectMapper jacksonObjectMapper(final Jackson2ObjectMapperBuilder builder) {
+        return getObjectMapper(builder);
+    }
+
+    public static ObjectMapper getObjectMapper(final Jackson2ObjectMapperBuilder builder) {
         final ObjectMapper objectMapper = builder.createXmlMapper(false).build();
 
         objectMapper.registerModule(
@@ -39,6 +43,8 @@ public class SerializableConfig {
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         // ignore java type not exist
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        // disable An unknown attribute was found to throw an exception
+        objectMapper.disable(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES);
 
         return objectMapper;
     }

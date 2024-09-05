@@ -1,8 +1,12 @@
 package lite.crud.domain.user.vo;
 
+import lite.crud.config.security.SysGrantedAuthority;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author xl-9527
@@ -11,6 +15,9 @@ import java.io.Serializable;
 public record UserInfoVo(Integer id, String username, String password) implements Serializable {
 
 	public LoginUserInfoVo toLoginUserInfoVo() {
-		return new LoginUserInfoVo(id, username, password);
+		final LoginUserInfoVo userInfoVo = new LoginUserInfoVo(id, username, password);
+		userInfoVo.setLoginTime(LocalDateTime.now());
+		userInfoVo.setAuthorities(new ArrayList<>(List.of(new SysGrantedAuthority("ROLE_ADMIN"))));
+		return userInfoVo;
 	}
 }
