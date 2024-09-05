@@ -1,6 +1,10 @@
 package lite.crud.config.security;
 
+import lite.crud.application.handler.sys.LoginService;
 import lite.crud.application.handler.user.UserInfoService;
+import lite.crud.config.common.constant.sys.user.LoginType;
+import lite.crud.domain.sys.dto.LoginDto;
+import lite.crud.domain.sys.vo.LoginUserInfoVo;
 import lite.crud.domain.user.dto.UserInfoQueryDto;
 import lite.crud.domain.user.vo.UserInfoVo;
 import org.apache.commons.lang3.ObjectUtils;
@@ -20,19 +24,22 @@ import java.util.List;
 @Service
 public class SysUserDetailService implements UserDetailsService, GroupManager {
 
-    private final UserInfoService userInfoService;
+    private final LoginService loginService;
 
-    public SysUserDetailService(final UserInfoService userInfoService) {
-        this.userInfoService = userInfoService;
+    public SysUserDetailService(final LoginService loginService) {
+        this.loginService = loginService;
     }
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        final List<UserInfoVo> userInfo = userInfoService.getUserInfo(new UserInfoQueryDto(username, null));
+        final LoginUserInfoVo userInfo = loginService.loginWithType(
+                new LoginDto(null, username, LoginType.DEFAULT_LOGIN_TYPE),
+                LoginType.DEFAULT_LOGIN_TYPE
+        );
         if (ObjectUtils.isEmpty(userInfo)) {
-            throw new UsernameNotFoundException("用户不存在");
+            throw new UsernameNotFoundException("user not found");
         }
-        return userInfo.get(0).toLoginUserInfoVo();
+        return userInfo;
     }
 
     /*  ------------------- group  ↓ ------------------- */

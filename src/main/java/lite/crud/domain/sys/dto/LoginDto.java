@@ -15,6 +15,22 @@ import java.io.Serializable;
 @Setter
 public class LoginDto implements Serializable {
 
+	public LoginDto() {
+	}
+
+	public LoginDto(final String password, final String username, final int loginType) {
+		this.password = password;
+		this.username = username;
+		this.loginType = loginType;
+	}
+
+	/**
+	 * login type, default value is zero
+	 *
+	 * @see lite.crud.config.common.constant.sys.user.LoginType
+	 */
+	private int loginType;
+
 	/**
 	 * Login username for this
 	 */

@@ -1,11 +1,13 @@
 package lite.crud.application.handler.sys;
 
 import lite.crud.application.handler.user.UserInfoService;
+import lite.crud.config.common.constant.sys.user.LoginType;
+import lite.crud.config.exception.custom.BusinessException;
 import lite.crud.domain.sys.dto.LoginDto;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;
 import lite.crud.domain.user.vo.UserInfoVo;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -16,18 +18,36 @@ import java.util.List;
 @Service
 public class LoginService {
 
-	private final UserInfoService userInfoService;
+    private final UserInfoService userInfoService;
 
-	public LoginService(UserInfoService userInfoService) {
-		this.userInfoService = userInfoService;
-	}
+    public LoginService(UserInfoService userInfoService) {
+        this.userInfoService = userInfoService;
+    }
 
-	public LoginUserInfoVo login(LoginDto loginDto) {
-		List<UserInfoVo> userInfoVoList = userInfoService.getUserInfo(loginDto.toUserInfoQueryDto());
-		if (ObjectUtils.isEmpty(userInfoVoList)) {
-			throw new RuntimeException("用户不存在");
-		}
+    private LoginUserInfoVo doLoginWithUsernamePassword(LoginDto loginDto) {
+        if (ObjectUtils.anyNull(loginDto.getUsername(), loginDto.getPassword())) {
+            throw new IllegalArgumentException("login user password or username is null");
+        }
+        List<UserInfoVo> userInfoVoList = userInfoService.getUserInfo(loginDto.toUserInfoQueryDto());
+        if (ObjectUtils.isEmpty(userInfoVoList)) {
+            throw new RuntimeException("user notfound with username -> " + loginDto.getUsername());
+        }
 
-		return userInfoVoList.get(0).toLoginUserInfoVo();
-	}
+        return userInfoVoList.get(0).toLoginUserInfoVo();
+    }
+
+    /**
+     * login with login type
+     *
+     * @param loginDto  login params
+     * @param loginType {@link lite.crud.config.common.constant.sys.user.LoginType}
+     * @return login user info
+     */
+    public LoginUserInfoVo loginWithType(LoginDto loginDto, final int loginType) {
+        if (loginType == LoginType.DEFAULT_LOGIN_TYPE) {
+            return doLoginWithUsernamePassword(loginDto);
+        }
+
+        throw new BusinessException("login type error -> " + loginType);
+    }
 }

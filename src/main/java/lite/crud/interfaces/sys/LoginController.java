@@ -28,6 +28,6 @@ public class LoginController {
 
     @PostMapping
     public ApiResult<LoginUserInfoVo> login(@RequestBody @Validated final LoginDto loginDto) {
-        return ApiResult.success(loginService.login(loginDto));
+        return ApiResult.success(loginService.loginWithType(loginDto, loginDto.getLoginType()));
     }
 }
