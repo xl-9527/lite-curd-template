@@ -4,7 +4,7 @@ package lite.crud.application.handler.user;
 import lite.crud.application.handler.user.support.UserInfoCrudServiceSupport;
 import lite.crud.domain.user.dto.UserInfoQueryDto;
 import lite.crud.domain.user.vo.UserInfoVo;
-import lite.crud.infrastructure.InvokeInfrastructure;
+import lite.crud.infrastructure.persistence.mysql.MysqlInvokeInfrastructure;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -18,9 +18,9 @@ import java.util.Optional;
 @Service
 public class UserInfoService {
 
-    private final InvokeInfrastructure<UserInfoCrudServiceSupport> infrastructure;
+    private final MysqlInvokeInfrastructure<UserInfoCrudServiceSupport> infrastructure;
 
-    public UserInfoService(final InvokeInfrastructure<UserInfoCrudServiceSupport> infrastructure) {
+    public UserInfoService(final MysqlInvokeInfrastructure<UserInfoCrudServiceSupport> infrastructure) {
         this.infrastructure = infrastructure;
     }
 

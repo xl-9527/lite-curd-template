@@ -9,8 +9,9 @@ import lite.crud.config.common.vo.ApiResult;
 import lite.crud.config.security.SysGrantedAuthority;
 import lite.crud.domain.sys.dto.LoginDto;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import lite.crud.infrastructure.persistence.redis.HashOps;
+import lite.crud.infrastructure.persistence.redis.RedisInvokeInfrastructure;
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,11 +37,11 @@ import java.util.stream.Collectors;
 @Service
 public class SysUsernamePasswordAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final RedisInvokeInfrastructure<LoginUserInfoVo> redisInvokeInfrastructure;
 
-    public SysUsernamePasswordAuthenticationFilter(final AuthenticationManager authenticationManager, final RedisTemplate<String, Object> redisTemplate) {
+    public SysUsernamePasswordAuthenticationFilter(final AuthenticationManager authenticationManager, final RedisInvokeInfrastructure<LoginUserInfoVo> redisInvokeInfrastructure) {
         super(new AntPathRequestMatcher("/sys/login", "POST"), authenticationManager);
-        this.redisTemplate = redisTemplate;
+        this.redisInvokeInfrastructure = redisInvokeInfrastructure;
     }
 
     @Override
@@ -62,18 +63,19 @@ public class SysUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
                 password);
         // Allow subclasses to set the "details" property
         this.setDetails(request, authRequest);
-        if (redisTemplate.opsForHash().hasKey(RedisConstant.USER_LOGIN_HASH_KEY, username)) {
+        final HashOps<LoginUserInfoVo> userInfoVoMap = redisInvokeInfrastructure.opsHash(RedisConstant.USER_LOGIN_HASH_KEY);
+        if (userInfoVoMap.containsKey(username)) {
             // has user info
-            final Object userInfo = redisTemplate.opsForHash().get(RedisConstant.USER_LOGIN_HASH_KEY, username);
-            if (userInfo instanceof LoginUserInfoVo loginUserInfoVo) {
-                loginUserInfoVo.setLoginTime(LocalDateTime.now());
-                final UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                        loginUserInfoVo, null, List.of(new SysGrantedAuthority("ROLE_ADMIN"))
-                );
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                return authenticationToken;
-            }
+            final LoginUserInfoVo loginUserInfoVo = userInfoVoMap.get(username);
+            loginUserInfoVo.setLoginTime(LocalDateTime.now());
+            final UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                    loginUserInfoVo, null, List.of(new SysGrantedAuthority("ROLE_ADMIN"))
+            );
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            return authenticationToken;
         }
+
+        // 首次登录
         final Authentication authenticate = this.getAuthenticationManager().authenticate(authRequest);
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         return authenticate;
@@ -84,7 +86,7 @@ public class SysUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
         // save login userinfo -> redis
         final Object principal = authResult.getPrincipal();
         if (principal instanceof LoginUserInfoVo userDetails) {
-            redisTemplate.opsForHash().put(RedisConstant.USER_LOGIN_HASH_KEY, userDetails.getUsername(), userDetails);
+            redisInvokeInfrastructure.opsHash(RedisConstant.USER_LOGIN_HASH_KEY).put(userDetails.getUsername(), userDetails);
         }
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().print(JSONOpcUtil.DEFAULT.toJSONStr(ApiResult.success(authResult)));

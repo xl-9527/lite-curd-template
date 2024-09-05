@@ -4,9 +4,10 @@ import lite.crud.config.security.filter.SysAccessDeniedHandler;
 import lite.crud.config.security.filter.SysBasicAuthenticationEntryPoint;
 import lite.crud.config.security.filter.SysTokenFilter;
 import lite.crud.config.security.filter.SysUsernamePasswordAuthenticationFilter;
+import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import lite.crud.infrastructure.persistence.redis.RedisInvokeInfrastructure;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -39,7 +40,7 @@ import java.util.LinkedHashMap;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(final HttpSecurity http, final RedisTemplate<String, Object> redisTemplate,
+    public SecurityFilterChain filterChain(final HttpSecurity http, final RedisInvokeInfrastructure<LoginUserInfoVo> redisInvokeInfrastructure,
                                            final DelegatingAuthenticationEntryPoint basicAuthenticationEntryPoint,
                                            final SysUsernamePasswordAuthenticationFilter sysUsernamePasswordAuthenticationFilter
     ) throws Exception {
@@ -50,7 +51,7 @@ public class SecurityConfig {
                 )
                 .headers(heads -> heads.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin).cacheControl(HeadersConfigurer.CacheControlConfig::disable))
                 .addFilterBefore(sysUsernamePasswordAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterAfter(new SysTokenFilter(redisTemplate), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new SysTokenFilter(redisInvokeInfrastructure), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(e ->
                         e.authenticationEntryPoint(basicAuthenticationEntryPoint)
                                 .accessDeniedHandler(new SysAccessDeniedHandler())

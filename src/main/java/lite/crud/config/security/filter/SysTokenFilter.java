@@ -6,8 +6,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lite.crud.config.common.constant.redis.RedisConstant;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import lite.crud.infrastructure.persistence.redis.HashOps;
+import lite.crud.infrastructure.persistence.redis.RedisInvokeInfrastructure;
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,24 +22,21 @@ import java.io.IOException;
  */
 public class SysTokenFilter extends OncePerRequestFilter {
 
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final RedisInvokeInfrastructure<LoginUserInfoVo> redisInvokeInfrastructure;
 
-    public SysTokenFilter(final RedisTemplate<String, Object> redisTemplate) {
-        this.redisTemplate = redisTemplate;
+    public SysTokenFilter(final RedisInvokeInfrastructure<LoginUserInfoVo> redisInvokeInfrastructure) {
+        this.redisInvokeInfrastructure = redisInvokeInfrastructure;
     }
 
     @Override
     protected void doFilterInternal(final HttpServletRequest request, @NonNull final HttpServletResponse response, @NonNull final FilterChain filterChain) throws ServletException, IOException {
         final String userId = request.getHeader("user_id");
         if (ObjectUtils.isNotEmpty(userId)) {
-            final Object obj = redisTemplate.opsForHash().get(RedisConstant.USER_LOGIN_HASH_KEY, userId);
-            if (obj instanceof LoginUserInfoVo loginUserInfoVo) {
+            final HashOps<LoginUserInfoVo> loginUserInfoVoHashOps = redisInvokeInfrastructure.opsHash(RedisConstant.USER_LOGIN_HASH_KEY);
+            final LoginUserInfoVo loginUserInfoVo = loginUserInfoVoHashOps.get(userId);
+            if (ObjectUtils.isNotEmpty(loginUserInfoVo)) {
                 SecurityContextHolder.getContext().setAuthentication(
                         new UsernamePasswordAuthenticationToken(loginUserInfoVo, null, loginUserInfoVo.getAuthorities())
-                );
-            } else if (ObjectUtils.isNotEmpty(obj)) {
-                SecurityContextHolder.getContext().setAuthentication(
-                        new UsernamePasswordAuthenticationToken(obj, null)
                 );
             }
         }
