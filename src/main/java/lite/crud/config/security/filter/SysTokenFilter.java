@@ -36,7 +36,7 @@ public class SysTokenFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(
                         new UsernamePasswordAuthenticationToken(loginUserInfoVo, null, loginUserInfoVo.getAuthorities())
                 );
-            } else {
+            } else if (ObjectUtils.isNotEmpty(obj)) {
                 SecurityContextHolder.getContext().setAuthentication(
                         new UsernamePasswordAuthenticationToken(obj, null)
                 );

@@ -1,9 +1,6 @@
 package lite.crud.config.security.filter;
 
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lite.crud.application.util.opc.json.JSONOpcUtil;
@@ -26,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,6 +66,7 @@ public class SysUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
             // has user info
             final Object userInfo = redisTemplate.opsForHash().get(RedisConstant.USER_LOGIN_HASH_KEY, username);
             if (userInfo instanceof LoginUserInfoVo loginUserInfoVo) {
+                loginUserInfoVo.setLoginTime(LocalDateTime.now());
                 final UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         loginUserInfoVo, null, List.of(new SysGrantedAuthority("ROLE_ADMIN"))
                 );
