@@ -47,6 +47,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/sys/login").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .headers(heads -> heads.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin).cacheControl(HeadersConfigurer.CacheControlConfig::disable))

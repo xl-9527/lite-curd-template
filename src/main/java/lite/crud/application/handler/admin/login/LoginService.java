@@ -1,4 +1,4 @@
-package lite.crud.application.handler.sys;
+package lite.crud.application.handler.admin.login;
 
 import lite.crud.application.handler.user.UserInfoService;
 import lite.crud.config.common.constant.sys.user.LoginType;
