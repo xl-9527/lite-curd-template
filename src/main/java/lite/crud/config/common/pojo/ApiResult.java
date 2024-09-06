@@ -1,4 +1,4 @@
-package lite.crud.config.common.vo;
+package lite.crud.config.common.pojo;
 
 import lite.crud.config.common.constant.ResponseRestCode;
 import lombok.Getter;

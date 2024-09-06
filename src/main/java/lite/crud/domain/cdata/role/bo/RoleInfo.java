@@ -12,4 +12,21 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class RoleInfo implements Serializable {
+
+    private Integer id;
+
+    /**
+     * role name
+     */
+    private String roleName;
+
+    /**
+     * role code
+     */
+    private String roleCode;
+
+    /**
+     * description info with current role
+     */
+    private String description;
 }

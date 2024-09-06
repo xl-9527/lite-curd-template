@@ -3,7 +3,7 @@ package lite.crud.interfaces.amdin.login;
 import jakarta.servlet.http.HttpServletRequest;
 import lite.crud.application.handler.admin.login.SignOutService;
 import lite.crud.config.common.constant.sys.user.CustomRpcHeaderWithLogin;
-import lite.crud.config.common.vo.ApiResult;
+import lite.crud.config.common.pojo.ApiResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

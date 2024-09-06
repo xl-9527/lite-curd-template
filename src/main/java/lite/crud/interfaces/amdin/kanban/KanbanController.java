@@ -1,6 +1,6 @@
 package lite.crud.interfaces.amdin.kanban;
 
-import lite.crud.config.common.vo.ApiResult;
+import lite.crud.config.common.pojo.ApiResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

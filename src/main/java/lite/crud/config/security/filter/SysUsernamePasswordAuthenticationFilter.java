@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lite.crud.application.util.opc.json.JSONOpcUtil;
 import lite.crud.config.common.constant.redis.RedisConstant;
-import lite.crud.config.common.vo.ApiResult;
+import lite.crud.config.common.pojo.ApiResult;
 import lite.crud.config.security.SysGrantedAuthority;
 import lite.crud.domain.sys.dto.LoginDto;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;

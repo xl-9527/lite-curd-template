@@ -3,7 +3,7 @@ package lite.crud.config.security.filter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lite.crud.application.util.opc.json.JSONOpcUtil;
-import lite.crud.config.common.vo.ApiResult;
+import lite.crud.config.common.pojo.ApiResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;

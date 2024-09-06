@@ -1,7 +1,7 @@
 package lite.crud.interfaces.cdata.role;
 
 import lite.crud.application.handler.cdata.role.RoleInfoService;
-import lite.crud.config.common.vo.ApiResult;
+import lite.crud.config.common.pojo.ApiResult;
 import lite.crud.domain.cdata.role.dto.RoleInfoQueryDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

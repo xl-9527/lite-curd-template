@@ -1,6 +1,6 @@
 package lite.crud.config.exception;
 
-import lite.crud.config.common.vo.ApiResult;
+import lite.crud.config.common.pojo.ApiResult;
 import lite.crud.config.exception.handler.ExceptionHandlerConfig;
 import lite.crud.config.exception.handler.ExceptionResolveHandler;
 import lite.crud.config.exception.vo.ExceptionHandlerVo;
