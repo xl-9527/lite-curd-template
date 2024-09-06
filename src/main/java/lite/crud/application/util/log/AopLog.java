@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.security.auth.login.FailedLoginException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +45,12 @@ public class AopLog {
     }
 
     @AfterReturning(pointcut = "logInit()")
-    public void logAfterReturn(JoinPoint joinPoint) {
+    public void logAfterReturn(JoinPoint joinPoint) throws FailedLoginException {
         String methodName = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
         final Object[] newArgs = this.canSerializeArgs(args);
         final LoginUserInfoVo currentLoginUserInfoVo = UserInfoUtil.getCurrentLoginUserInfoVo();
-        log.info("handler-method -> {}, params -> {}, login user -> {}", methodName, JSONOpcUtil.DEFAULT.toJSONStr(newArgs), currentLoginUserInfoVo);
+        log.info("handler-method -> {}, params -> {}, login user -> {}", methodName, JSONOpcUtil.DEFAULT.toJSONStr(newArgs), currentLoginUserInfoVo.getUsername());
     }
 
     @AfterThrowing(pointcut = "logInit()")
