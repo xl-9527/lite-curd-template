@@ -1,9 +1,9 @@
-package lite.crud.application.handler.user.support;
+package lite.crud.application.handler.cdata.user.support;
 
 import lite.crud.application.base.BizEventCrudService;
-import lite.crud.domain.user.dto.UserInfoQueryDto;
-import lite.crud.domain.user.dto.UserInfoWriteDto;
-import lite.crud.domain.user.vo.UserInfoVo;
+import lite.crud.domain.cdata.user.dto.UserInfoQueryDto;
+import lite.crud.domain.cdata.user.dto.UserInfoWriteDto;
+import lite.crud.domain.cdata.user.vo.UserInfoVo;
 import lite.crud.infrastructure.persistence.mysql.user.UserInfoMapper;
 import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;

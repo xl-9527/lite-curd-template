@@ -1,6 +1,6 @@
 package lite.crud.domain.sys.vo;
 
-import lite.crud.domain.user.dto.UserInfoWriteDto;
+import lite.crud.domain.cdata.user.dto.UserInfoWriteDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;

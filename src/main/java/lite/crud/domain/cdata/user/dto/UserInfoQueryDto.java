@@ -1,4 +1,4 @@
-package lite.crud.domain.user.dto;
+package lite.crud.domain.cdata.user.dto;
 
 import lite.crud.application.util.dto.PageParams;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package lite.crud.application.util.dto;
 
-import lite.crud.domain.user.vo.UserInfoVo;
+import lite.crud.domain.cdata.user.vo.UserInfoVo;
 import lombok.Getter;
 import lombok.Setter;
 

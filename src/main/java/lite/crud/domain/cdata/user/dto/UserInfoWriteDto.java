@@ -1,7 +1,7 @@
-package lite.crud.domain.user.dto;
+package lite.crud.domain.cdata.user.dto;
 
 import lite.crud.application.util.dto.BaseParams;
-import lite.crud.domain.user.bo.UserInfo;
+import lite.crud.domain.cdata.user.bo.UserInfo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.ObjectUtils;

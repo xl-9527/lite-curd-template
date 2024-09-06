@@ -1,11 +1,11 @@
 package lite.crud.application.handler.admin.login;
 
-import lite.crud.application.handler.user.UserInfoService;
+import lite.crud.application.handler.cdata.user.UserInfoService;
 import lite.crud.config.common.constant.sys.user.LoginType;
 import lite.crud.config.exception.custom.BusinessException;
 import lite.crud.domain.sys.dto.LoginDto;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;
-import lite.crud.domain.user.vo.UserInfoVo;
+import lite.crud.domain.cdata.user.vo.UserInfoVo;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 

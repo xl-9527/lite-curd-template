@@ -30,7 +30,7 @@
 		</foreach>
 	</delete>
 
-	<select id="doQuery" resultType="lite.crud.domain.user.vo.UserInfoVo">
+	<select id="doQuery" resultType="lite.crud.domain.cdata.user.vo.UserInfoVo">
 		select
 			*
 		from user_info

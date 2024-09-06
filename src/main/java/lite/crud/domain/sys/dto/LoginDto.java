@@ -1,7 +1,7 @@
 package lite.crud.domain.sys.dto;
 
 import jakarta.validation.constraints.NotEmpty;
-import lite.crud.domain.user.dto.UserInfoQueryDto;
+import lite.crud.domain.cdata.user.dto.UserInfoQueryDto;
 import lombok.Getter;
 import lombok.Setter;
 

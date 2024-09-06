@@ -1,4 +1,4 @@
-package lite.crud.domain.user.bo;
+package lite.crud.domain.cdata.user.bo;
 
 import lombok.Getter;
 import lombok.Setter;

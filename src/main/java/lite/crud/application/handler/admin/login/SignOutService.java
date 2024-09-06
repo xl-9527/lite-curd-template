@@ -1,6 +1,6 @@
 package lite.crud.application.handler.admin.login;
 
-import lite.crud.application.handler.user.UserInfoService;
+import lite.crud.application.handler.cdata.user.UserInfoService;
 import lite.crud.config.common.constant.redis.RedisConstant;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;
 import lite.crud.infrastructure.persistence.redis.HashOps;

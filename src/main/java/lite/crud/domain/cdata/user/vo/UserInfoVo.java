@@ -1,4 +1,4 @@
-package lite.crud.domain.user.vo;
+package lite.crud.domain.cdata.user.vo;
 
 import lite.crud.config.security.SysGrantedAuthority;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;

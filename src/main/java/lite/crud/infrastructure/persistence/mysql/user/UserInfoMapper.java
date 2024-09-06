@@ -1,9 +1,9 @@
 package lite.crud.infrastructure.persistence.mysql.user;
 
-import lite.crud.domain.user.bo.UserInfo;
-import lite.crud.domain.user.dto.UserInfoQueryDto;
-import lite.crud.domain.user.dto.UserInfoWriteDto;
-import lite.crud.domain.user.vo.UserInfoVo;
+import lite.crud.domain.cdata.user.bo.UserInfo;
+import lite.crud.domain.cdata.user.dto.UserInfoQueryDto;
+import lite.crud.domain.cdata.user.dto.UserInfoWriteDto;
+import lite.crud.domain.cdata.user.vo.UserInfoVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

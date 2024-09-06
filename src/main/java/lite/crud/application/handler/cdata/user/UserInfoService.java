@@ -1,10 +1,10 @@
-package lite.crud.application.handler.user;
+package lite.crud.application.handler.cdata.user;
 
 
-import lite.crud.application.handler.user.support.UserInfoCrudServiceSupport;
-import lite.crud.domain.user.dto.UserInfoQueryDto;
-import lite.crud.domain.user.dto.UserInfoWriteDto;
-import lite.crud.domain.user.vo.UserInfoVo;
+import lite.crud.application.handler.cdata.user.support.UserInfoCrudServiceSupport;
+import lite.crud.domain.cdata.user.dto.UserInfoQueryDto;
+import lite.crud.domain.cdata.user.dto.UserInfoWriteDto;
+import lite.crud.domain.cdata.user.vo.UserInfoVo;
 import lite.crud.infrastructure.persistence.mysql.MysqlInvokeInfrastructure;
 import org.springframework.stereotype.Service;
 

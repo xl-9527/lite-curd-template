@@ -22,7 +22,6 @@ public class SignOutController {
         this.signOutService = signOutService;
     }
 
-
     /**
      * 退出登录
      */

@@ -1,4 +1,4 @@
-package lite.crud.interfaces.user;
+package lite.crud.interfaces.cdata.user;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2024/7/26
  **/
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/cdata/user")
 public class UserController {
 }
