@@ -3,6 +3,7 @@ package lite.crud.application.handler.user;
 
 import lite.crud.application.handler.user.support.UserInfoCrudServiceSupport;
 import lite.crud.domain.user.dto.UserInfoQueryDto;
+import lite.crud.domain.user.dto.UserInfoWriteDto;
 import lite.crud.domain.user.vo.UserInfoVo;
 import lite.crud.infrastructure.persistence.mysql.MysqlInvokeInfrastructure;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,9 @@ public class UserInfoService {
     public List<UserInfoVo> getUserInfo(final UserInfoQueryDto userInfoQueryDto) {
         final List<UserInfoVo> userInfoVos = infrastructure.invoke().doQuery(userInfoQueryDto);
         return Optional.ofNullable(userInfoVos).orElse(Collections.emptyList());
+    }
+
+    public void updateById(final UserInfoWriteDto userInfoWriteDto) {
+        infrastructure.invoke().doUpdate(userInfoWriteDto);
     }
 }

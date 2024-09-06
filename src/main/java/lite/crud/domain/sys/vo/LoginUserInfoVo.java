@@ -1,5 +1,6 @@
 package lite.crud.domain.sys.vo;
 
+import lite.crud.domain.user.dto.UserInfoWriteDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -47,4 +48,12 @@ public class LoginUserInfoVo implements Serializable, UserDetails {
      * 登录时间
      */
     private LocalDateTime loginTime;
+
+    public UserInfoWriteDto toUserInfoWriteDto(final LocalDateTime signOutTime) {
+        final UserInfoWriteDto userInfoWriteDto = new UserInfoWriteDto();
+        userInfoWriteDto.setIds(new Integer[]{id});
+        userInfoWriteDto.setLastLoginTime(loginTime);
+        userInfoWriteDto.setSignOutTime(signOutTime);
+        return userInfoWriteDto;
+    }
 }

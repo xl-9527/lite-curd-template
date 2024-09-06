@@ -7,7 +7,23 @@
 		values (#{username}, #{password})
 	</insert>
 
-	<delete id="deleteByIds">
+    <update id="doUpdate">
+		update user_info
+		<set>
+			<if test="lastLoginTime != null">
+				last_login_time = #{lastLoginTime},
+			</if>
+			<if test="signOutTime != null">
+				sign_out_time = #{signOutTime},
+			</if>
+		</set>
+		where id in
+		<foreach collection="ids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
+
+    <delete id="deleteByIds">
 		delete from user_info where id in
 		<foreach collection="ids" item="id" open="(" separator="," close=")">
 			#{id}

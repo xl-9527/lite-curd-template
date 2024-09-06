@@ -6,9 +6,12 @@ import lite.crud.domain.user.dto.UserInfoWriteDto;
 import lite.crud.domain.user.vo.UserInfoVo;
 import lite.crud.infrastructure.persistence.mysql.user.UserInfoMapper;
 import org.apache.commons.lang3.ObjectUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +24,8 @@ public class UserInfoCrudServiceSupport implements BizEventCrudService<UserInfoV
 
     private final UserInfoMapper userInfoMapper;
 
+    private final Logger log = LoggerFactory.getLogger(UserInfoCrudServiceSupport.class);
+
     public UserInfoCrudServiceSupport(UserInfoMapper userInfoMapper) {
         this.userInfoMapper = userInfoMapper;
     }
@@ -31,8 +36,14 @@ public class UserInfoCrudServiceSupport implements BizEventCrudService<UserInfoV
     }
 
     @Override
-    public void doUpdate(UserInfoWriteDto updateMap) {
+    public void doUpdate(UserInfoWriteDto userInfoWriteDto) {
+        final Serializable[] ids = userInfoWriteDto.getIds();
+        if (ObjectUtils.isEmpty(ids)) {
+            log.warn("update with id, bug not fount ids -> {}", Arrays.toString(ids));
+            return;
+        }
 
+        userInfoMapper.doUpdate(userInfoWriteDto);
     }
 
     @Override

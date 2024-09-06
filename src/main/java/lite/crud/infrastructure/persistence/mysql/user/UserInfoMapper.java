@@ -2,6 +2,7 @@ package lite.crud.infrastructure.persistence.mysql.user;
 
 import lite.crud.domain.user.bo.UserInfo;
 import lite.crud.domain.user.dto.UserInfoQueryDto;
+import lite.crud.domain.user.dto.UserInfoWriteDto;
 import lite.crud.domain.user.vo.UserInfoVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,4 +20,6 @@ public interface UserInfoMapper {
     void insert(UserInfo dbBean);
 
     int deleteByIds(List<Integer> ids);
+
+    void doUpdate(UserInfoWriteDto updateMap);
 }

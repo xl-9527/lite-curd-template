@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lite.crud.config.common.constant.redis.RedisConstant;
+import lite.crud.config.common.constant.sys.user.CustomRpcHeaderWithLogin;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;
 import lite.crud.infrastructure.persistence.redis.HashOps;
 import lite.crud.infrastructure.persistence.redis.RedisInvokeInfrastructure;
@@ -30,7 +31,7 @@ public class SysTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(final HttpServletRequest request, @NonNull final HttpServletResponse response, @NonNull final FilterChain filterChain) throws ServletException, IOException {
-        final String userId = request.getHeader("user_id");
+        final String userId = request.getHeader(CustomRpcHeaderWithLogin.USER_ID);
         if (ObjectUtils.isNotEmpty(userId)) {
             final HashOps<LoginUserInfoVo> loginUserInfoVoHashOps = redisInvokeInfrastructure.opsHash(RedisConstant.USER_LOGIN_HASH_KEY);
             final LoginUserInfoVo loginUserInfoVo = loginUserInfoVoHashOps.get(userId);
