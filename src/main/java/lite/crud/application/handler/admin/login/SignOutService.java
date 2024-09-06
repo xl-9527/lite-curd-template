@@ -26,7 +26,7 @@ public class SignOutService {
     }
 
     public boolean signOut(final String username) {
-        if (ObjectUtils.isEmpty(username) || hashOps.containsKey(username)) {
+        if (ObjectUtils.isEmpty(username) || !hashOps.containsKey(username)) {
             return false;
         }
         final LoginUserInfoVo loginUserInfoVo = hashOps.remove(username);

@@ -25,8 +25,8 @@ public class LoginService {
     }
 
     private LoginUserInfoVo doLoginWithUsernamePassword(LoginDto loginDto) {
-        if (ObjectUtils.anyNull(loginDto.getUsername(), loginDto.getPassword())) {
-            throw new IllegalArgumentException("login user password or username is null");
+        if (ObjectUtils.anyNull(loginDto.getUsername(), loginDto.getLoginType())) {
+            throw new IllegalArgumentException("login user loginType or username is null");
         }
         List<UserInfoVo> userInfoVoList = userInfoService.getUserInfo(loginDto.toUserInfoQueryDto());
         if (ObjectUtils.isEmpty(userInfoVoList)) {

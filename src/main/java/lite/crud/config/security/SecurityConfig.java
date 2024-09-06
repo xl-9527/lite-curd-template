@@ -46,7 +46,7 @@ public class SecurityConfig {
     ) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/sys/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/sys/login", "/admin/login/sign-out").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
