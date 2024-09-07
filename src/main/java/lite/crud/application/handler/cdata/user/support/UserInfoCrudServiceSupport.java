@@ -1,10 +1,11 @@
 package lite.crud.application.handler.cdata.user.support;
 
 import lite.crud.application.base.BizEventCrudService;
+import lite.crud.config.common.pojo.Page;
 import lite.crud.domain.cdata.user.dto.UserInfoQueryDto;
 import lite.crud.domain.cdata.user.dto.UserInfoWriteDto;
 import lite.crud.domain.cdata.user.vo.UserInfoVo;
-import lite.crud.infrastructure.persistence.mysql.user.UserInfoMapper;
+import lite.crud.infrastructure.persistence.mysql.cdata.user.UserInfoMapper;
 import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,7 +63,7 @@ public class UserInfoCrudServiceSupport implements BizEventCrudService<UserInfoV
             return null;
         }
 
-        return this.doQuery(new UserInfoQueryDto().builder().ids(ids).build());
+        return this.doQuery(new UserInfoQueryDto().builder().ids(ids).build()).getRecord();
     }
 
     @Override
@@ -76,7 +77,7 @@ public class UserInfoCrudServiceSupport implements BizEventCrudService<UserInfoV
     }
 
     @Override
-    public List<UserInfoVo> doQuery(final UserInfoQueryDto userInfoQueryDto) {
-        return userInfoMapper.doQuery(userInfoQueryDto);
+    public Page<UserInfoVo> doQuery(final UserInfoQueryDto userInfoQueryDto) {
+        return userInfoMapper.doQuery(new Page<>(userInfoQueryDto.getPageIndex(), userInfoQueryDto.getPageSize()), userInfoQueryDto);
     }
 }

@@ -1,6 +1,9 @@
 package lite.crud.application.handler.cdata.role;
 
+import lite.crud.application.handler.cdata.role.support.RoleInfoCrudServiceSupport;
+import lite.crud.config.common.pojo.Page;
 import lite.crud.domain.cdata.role.dto.RoleInfoQueryDto;
+import lite.crud.domain.cdata.role.vo.RoleInfoVo;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,8 +13,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleInfoService {
 
+    private final RoleInfoCrudServiceSupport roleInfoCrudServiceSupport;
 
-    public Object list(final RoleInfoQueryDto roleInfoQueryDto) {
+    public RoleInfoService(final RoleInfoCrudServiceSupport roleInfoCrudServiceSupport) {
+        this.roleInfoCrudServiceSupport = roleInfoCrudServiceSupport;
+    }
+
+    public Page<RoleInfoVo> list(final RoleInfoQueryDto roleInfoQueryDto) {
         return null;
     }
 }

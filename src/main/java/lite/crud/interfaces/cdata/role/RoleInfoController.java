@@ -23,7 +23,7 @@ public class RoleInfoController {
         this.roleService = roleService;
     }
 
-    @GetMapping
+    @GetMapping("list")
     public ApiResult<?> list(RoleInfoQueryDto roleInfoQueryDto) {
         return ApiResult.success(roleService.list(roleInfoQueryDto));
     }

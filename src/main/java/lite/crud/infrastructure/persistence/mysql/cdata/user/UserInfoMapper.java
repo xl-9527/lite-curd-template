@@ -1,10 +1,12 @@
-package lite.crud.infrastructure.persistence.mysql.user;
+package lite.crud.infrastructure.persistence.mysql.cdata.user;
 
+import lite.crud.config.common.pojo.Page;
 import lite.crud.domain.cdata.user.bo.UserInfo;
 import lite.crud.domain.cdata.user.dto.UserInfoQueryDto;
 import lite.crud.domain.cdata.user.dto.UserInfoWriteDto;
 import lite.crud.domain.cdata.user.vo.UserInfoVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
 @Mapper
 public interface UserInfoMapper {
 
-    List<UserInfoVo> doQuery(UserInfoQueryDto userInfoQueryDto);
+    Page<UserInfoVo> doQuery(Page<UserInfoVo> page, @Param("dto") UserInfoQueryDto userInfoQueryDto);
 
     void insert(UserInfo dbBean);
 

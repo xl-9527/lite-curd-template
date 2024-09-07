@@ -50,4 +50,8 @@ public class Page<T> {
      * page query result
      */
     private List<T> record;
+
+    public static <T> Page<T> empty() {
+        return new Page<>(1, 10);
+    }
 }

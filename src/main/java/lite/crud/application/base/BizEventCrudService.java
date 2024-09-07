@@ -2,6 +2,7 @@ package lite.crud.application.base;
 
 import lite.crud.application.BizEventService;
 import lite.crud.application.util.dto.PageParams;
+import lite.crud.config.common.pojo.Page;
 
 import java.io.Serializable;
 import java.util.List;
@@ -25,5 +26,5 @@ public interface BizEventCrudService<VO, DTO, QueryDto extends PageParams> exten
 
     VO doGetById(final Serializable id);
 
-    List<VO> doQuery(QueryDto queryDto);
+    Page<VO> doQuery(QueryDto queryDto);
 }

@@ -1,11 +1,10 @@
 package lite.crud.application.handler.cdata.user;
 
 
-import lite.crud.application.handler.cdata.user.support.UserInfoCrudServiceSupport;
 import lite.crud.domain.cdata.user.dto.UserInfoQueryDto;
 import lite.crud.domain.cdata.user.dto.UserInfoWriteDto;
 import lite.crud.domain.cdata.user.vo.UserInfoVo;
-import lite.crud.infrastructure.persistence.mysql.MysqlInvokeInfrastructure;
+import lite.crud.infrastructure.persistence.mysql.cdata.user.UserInfoMysqlInvokeInfrastructure;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -19,14 +18,14 @@ import java.util.Optional;
 @Service
 public class UserInfoService {
 
-    private final MysqlInvokeInfrastructure<UserInfoCrudServiceSupport> infrastructure;
+    private final UserInfoMysqlInvokeInfrastructure infrastructure;
 
-    public UserInfoService(final MysqlInvokeInfrastructure<UserInfoCrudServiceSupport> infrastructure) {
+    public UserInfoService(final UserInfoMysqlInvokeInfrastructure infrastructure) {
         this.infrastructure = infrastructure;
     }
 
     public List<UserInfoVo> getUserInfo(final UserInfoQueryDto userInfoQueryDto) {
-        final List<UserInfoVo> userInfoVos = infrastructure.invoke().doQuery(userInfoQueryDto);
+        final List<UserInfoVo> userInfoVos = infrastructure.invoke().doQuery(userInfoQueryDto).getRecord();
         return Optional.ofNullable(userInfoVos).orElse(Collections.emptyList());
     }
 

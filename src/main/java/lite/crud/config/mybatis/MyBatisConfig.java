@@ -1,5 +1,6 @@
 package lite.crud.config.mybatis;
 
+import lite.crud.config.mybatis.intercept.PageIntercept;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.springframework.context.annotation.Bean;
