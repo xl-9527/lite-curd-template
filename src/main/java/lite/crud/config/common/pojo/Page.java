@@ -51,6 +51,9 @@ public class Page<T> {
      */
     private List<T> record;
 
+    /**
+     * instance one empty page
+     */
     public static <T> Page<T> empty() {
         return new Page<>(1, 10);
     }
