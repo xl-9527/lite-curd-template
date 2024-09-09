@@ -30,7 +30,7 @@ public class LoginService {
         }
         List<UserInfoVo> userInfoVoList = userInfoService.getUserInfo(loginDto.toUserInfoQueryDto());
         if (ObjectUtils.isEmpty(userInfoVoList)) {
-            throw new RuntimeException("user notfound with username -> " + loginDto.getUsername());
+            throw new RuntimeException("user not found with username -> " + loginDto.getUsername());
         }
 
         return userInfoVoList.get(0).toLoginUserInfoVo();
@@ -45,7 +45,7 @@ public class LoginService {
      */
     public LoginUserInfoVo loginWithType(LoginDto loginDto, final int loginType) {
         if (loginType == LoginType.DEFAULT_LOGIN_TYPE) {
-            return doLoginWithUsernamePassword(loginDto);
+            return this.doLoginWithUsernamePassword(loginDto);
         }
 
         throw new BusinessException("login type error -> " + loginType);

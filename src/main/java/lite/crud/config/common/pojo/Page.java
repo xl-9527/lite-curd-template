@@ -55,6 +55,6 @@ public class Page<T> {
      * instance one empty page
      */
     public static <T> Page<T> empty() {
-        return new Page<>(1, 10);
+        return new Page<>();
     }
 }
