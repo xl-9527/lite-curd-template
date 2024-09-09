@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration(proxyBeanMethods = false)
 public class MyBatisConfig {
 
-
     @Bean
     public ConfigurationCustomizer interceptorCustomer(final PageIntercept pageIntercept, final PageResultIntercept pageResultIntercept) {
         return configuration -> {

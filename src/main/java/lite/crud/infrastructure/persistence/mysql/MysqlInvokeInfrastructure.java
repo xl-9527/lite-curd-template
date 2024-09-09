@@ -9,14 +9,14 @@ import lite.crud.infrastructure.InvokeInfrastructure;
  */
 public class MysqlInvokeInfrastructure<T extends BizEventCrudService<?, ?, ?>> implements InvokeInfrastructure<T> {
 
-    private final T t;
+    protected final T crudService;
 
-    public MysqlInvokeInfrastructure(final T t) {
-        this.t = t;
+    public MysqlInvokeInfrastructure(final T crudService) {
+        this.crudService = crudService;
     }
 
     @Override
     public T invoke() {
-        return t;
+        return crudService;
     }
 }

@@ -63,7 +63,7 @@ public class UserInfoCrudServiceSupport implements BizEventCrudService<UserInfoV
             return null;
         }
 
-        return this.doQuery(new UserInfoQueryDto().builder().ids(ids).build()).getRecord();
+        return this.doQuery(new UserInfoQueryDto().builder().ids(ids).build());
     }
 
     @Override
@@ -77,7 +77,12 @@ public class UserInfoCrudServiceSupport implements BizEventCrudService<UserInfoV
     }
 
     @Override
-    public Page<UserInfoVo> doQuery(final UserInfoQueryDto userInfoQueryDto) {
-        return userInfoMapper.doQuery(new Page<>(userInfoQueryDto.getPageIndex(), userInfoQueryDto.getPageSize()), userInfoQueryDto);
+    public List<UserInfoVo> doQueryPage(final Page<UserInfoVo> page, final UserInfoQueryDto userInfoQueryDto) {
+        return userInfoMapper.doQuery(page, userInfoQueryDto);
+    }
+
+    @Override
+    public List<UserInfoVo> doQuery(final UserInfoQueryDto userInfoQueryDto) {
+        return userInfoMapper.doQuery(null, userInfoQueryDto);
     }
 }

@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface BizEventCrudService<VO, DTO, QueryDto extends PageParams> extends BizEventService {
 
-    void doCreate (final DTO dto);
+    void doCreate(final DTO dto);
 
     void doUpdate(final DTO updateMap);
 
@@ -26,5 +26,13 @@ public interface BizEventCrudService<VO, DTO, QueryDto extends PageParams> exten
 
     VO doGetById(final Serializable id);
 
-    Page<VO> doQuery(QueryDto queryDto);
+    /**
+     * page query
+     */
+    List<VO> doQueryPage(Page<VO> page, QueryDto queryDto);
+
+    /**
+     * normal query
+     */
+    List<VO> doQuery(QueryDto queryDto);
 }

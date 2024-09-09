@@ -5,6 +5,7 @@ import lite.crud.config.common.pojo.Page;
 import lite.crud.domain.cdata.role.dto.RoleInfoQueryDto;
 import lite.crud.domain.cdata.role.dto.RoleInfoWriteDto;
 import lite.crud.domain.cdata.role.vo.RoleInfoVo;
+import lite.crud.infrastructure.persistence.mysql.cdata.role.RoleInfoMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -17,6 +18,12 @@ import java.util.Map;
  **/
 @Service
 public class RoleInfoCrudServiceSupport implements BizEventCrudService<RoleInfoVo, RoleInfoWriteDto, RoleInfoQueryDto> {
+
+    private final RoleInfoMapper roleInfoMapper;
+
+    public RoleInfoCrudServiceSupport(final RoleInfoMapper roleInfoMapper) {
+        this.roleInfoMapper = roleInfoMapper;
+    }
 
     @Override
     public void doCreate(final RoleInfoWriteDto roleInfoWriteDto) {
@@ -49,7 +56,12 @@ public class RoleInfoCrudServiceSupport implements BizEventCrudService<RoleInfoV
     }
 
     @Override
-    public Page<RoleInfoVo> doQuery(final RoleInfoQueryDto roleInfoQueryDto) {
-        return Page.empty();
+    public List<RoleInfoVo> doQueryPage(final Page<RoleInfoVo> page, final RoleInfoQueryDto roleInfoQueryDto) {
+        return null;
+    }
+
+    @Override
+    public List<RoleInfoVo> doQuery(final RoleInfoQueryDto roleInfoQueryDto) {
+        return null;
     }
 }

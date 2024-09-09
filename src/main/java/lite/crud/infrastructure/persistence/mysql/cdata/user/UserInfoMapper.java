@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 public interface UserInfoMapper {
 
-    Page<UserInfoVo> doQuery(Page<UserInfoVo> page, @Param("dto") UserInfoQueryDto userInfoQueryDto);
+    List<UserInfoVo> doQuery(Page<UserInfoVo> page, @Param("dto") UserInfoQueryDto userInfoQueryDto);
 
     void insert(UserInfo dbBean);
 

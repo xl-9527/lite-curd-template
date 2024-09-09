@@ -25,7 +25,7 @@ public class UserInfoService {
     }
 
     public List<UserInfoVo> getUserInfo(final UserInfoQueryDto userInfoQueryDto) {
-        final List<UserInfoVo> userInfoVos = infrastructure.invoke().doQuery(userInfoQueryDto).getRecord();
+        final List<UserInfoVo> userInfoVos = infrastructure.invoke().doQuery(userInfoQueryDto);
         return Optional.ofNullable(userInfoVos).orElse(Collections.emptyList());
     }
 
