@@ -1,9 +1,8 @@
 package lite.crud.domain.cdata.role.bo;
 
+import lite.crud.config.common.pojo.BaseDbField;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.Serializable;
 
 /**
  * @author xl-9527
@@ -11,7 +10,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class RoleInfo implements Serializable {
+public class RoleInfo extends BaseDbField {
 
     private Integer id;
 
