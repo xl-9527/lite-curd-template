@@ -2,7 +2,9 @@ package lite.crud.interfaces.cdata.role;
 
 import lite.crud.application.handler.cdata.role.RoleInfoService;
 import lite.crud.config.common.pojo.ApiResult;
+import lite.crud.config.common.pojo.Page;
 import lite.crud.domain.cdata.role.dto.RoleInfoQueryDto;
+import lite.crud.domain.cdata.role.vo.RoleInfoVo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +26,7 @@ public class RoleInfoController {
     }
 
     @GetMapping("list")
-    public ApiResult<?> list(RoleInfoQueryDto roleInfoQueryDto) {
+    public ApiResult<Page<RoleInfoVo>> list(RoleInfoQueryDto roleInfoQueryDto) {
         return ApiResult.success(roleService.list(roleInfoQueryDto));
     }
 }

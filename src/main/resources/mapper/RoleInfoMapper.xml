@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lite.crud.infrastructure.persistence.mysql.cdata.role.RoleInfoMapper">
+
+    <select id="doQueryPage" resultType="lite.crud.domain.cdata.role.vo.RoleInfoVo">
+        <include refid="COMMON_SELECT_LIST" />
+    </select>
+
+    <select id="toQuery" resultType="lite.crud.domain.cdata.role.vo.RoleInfoVo">
+        <include refid="COMMON_SELECT_LIST" />
+    </select>
+
+
+    <sql id="COMMON_SELECT_LIST">
+        select * from role_info
+        <where>
+
+        </where>
+    </sql>
+</mapper>

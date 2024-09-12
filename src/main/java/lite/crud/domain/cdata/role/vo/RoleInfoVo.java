@@ -1,5 +1,6 @@
 package lite.crud.domain.cdata.role.vo;
 
+import lite.crud.domain.cdata.role.bo.RoleInfo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,5 +10,5 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
-public class RoleInfoVo {
+public class RoleInfoVo extends RoleInfo {
 }

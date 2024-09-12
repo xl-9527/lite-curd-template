@@ -39,6 +39,10 @@ import java.util.LinkedHashMap;
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
 
+    private final String[] permitAllGET = {"/cdata/role/list"};
+    private final String[] permitAllPORT = {"/sys/login", "/admin/login/sign-out"};
+    private final String[] permitAllAll = {};
+
     @Bean
     public SecurityFilterChain filterChain(final HttpSecurity http, final RedisInvokeInfrastructure<LoginUserInfoVo> redisInvokeInfrastructure,
                                            final DelegatingAuthenticationEntryPoint basicAuthenticationEntryPoint,
@@ -46,7 +50,8 @@ public class SecurityConfig {
     ) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/sys/login", "/admin/login/sign-out").permitAll()
+                        .requestMatchers(HttpMethod.POST, permitAllPORT).permitAll()
+                        .requestMatchers(HttpMethod.GET, permitAllGET).permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

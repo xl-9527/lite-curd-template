@@ -1,6 +1,12 @@
 package lite.crud.infrastructure.persistence.mysql.cdata.role;
 
+import lite.crud.config.common.pojo.Page;
+import lite.crud.domain.cdata.role.dto.RoleInfoQueryDto;
+import lite.crud.domain.cdata.role.vo.RoleInfoVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author xl-9527
@@ -8,4 +14,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface RoleInfoMapper {
+
+    List<RoleInfoVo> doQueryPage(Page<RoleInfoVo> page, @Param("dto") RoleInfoQueryDto roleInfoQueryDto);
+
+    List<RoleInfoVo> toQuery(RoleInfoQueryDto roleInfoQueryDto);
 }
