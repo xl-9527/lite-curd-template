@@ -1,5 +1,6 @@
 package lite.crud.domain.cdata.user.bo;
 
+import lite.crud.config.common.pojo.BaseDbField;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-public class UserInfo {
+public class UserInfo extends BaseDbField {
 
 	private Integer id;
 
