@@ -77,7 +77,7 @@ public class UserInfoCrudServiceSupport implements BizEventCrudService<UserInfoV
     }
 
     @Override
-    public List<UserInfoVo> doQueryPage(final Page<UserInfoVo> page, final UserInfoQueryDto userInfoQueryDto) {
+    public List<UserInfoVo> doQueryListPage(final Page<UserInfoVo> page, final UserInfoQueryDto userInfoQueryDto) {
         return userInfoMapper.doQuery(page, userInfoQueryDto);
     }
 

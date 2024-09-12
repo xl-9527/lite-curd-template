@@ -19,7 +19,7 @@ public class RoleInfoService {
         this.roleInfoMysqlInvokeInvokeInfrastructure = roleInfoMysqlInvokeInvokeInfrastructure;
     }
 
-    public Page<RoleInfoVo> list(final RoleInfoQueryDto roleInfoQueryDto) {
-        return roleInfoMysqlInvokeInvokeInfrastructure.getPage(roleInfoQueryDto.toPage(), roleInfoQueryDto);
+    public Page<RoleInfoVo> listPage(final RoleInfoQueryDto roleInfoQueryDto) {
+        return roleInfoMysqlInvokeInvokeInfrastructure.listPage(roleInfoQueryDto.toPage(), roleInfoQueryDto);
     }
 }

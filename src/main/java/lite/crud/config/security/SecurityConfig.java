@@ -39,7 +39,7 @@ import java.util.LinkedHashMap;
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
 
-    private final String[] permitAllGET = {"/cdata/role/list"};
+    private final String[] permitAllGET = {"/cdata/role/list", "/cdata/user/list"};
     private final String[] permitAllPORT = {"/sys/login", "/admin/login/sign-out"};
     private final String[] permitAllAll = {};
 

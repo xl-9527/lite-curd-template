@@ -29,7 +29,7 @@ public interface BizEventCrudService<VO, DTO, QueryDto extends PageParams> exten
     /**
      * page query
      */
-    List<VO> doQueryPage(Page<VO> page, QueryDto queryDto);
+    List<VO> doQueryListPage(Page<VO> page, QueryDto queryDto);
 
     /**
      * normal query

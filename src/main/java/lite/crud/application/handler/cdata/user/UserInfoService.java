@@ -1,6 +1,7 @@
 package lite.crud.application.handler.cdata.user;
 
 
+import lite.crud.config.common.pojo.Page;
 import lite.crud.domain.cdata.user.dto.UserInfoQueryDto;
 import lite.crud.domain.cdata.user.dto.UserInfoWriteDto;
 import lite.crud.domain.cdata.user.vo.UserInfoVo;
@@ -31,5 +32,9 @@ public class UserInfoService {
 
     public void updateById(final UserInfoWriteDto userInfoWriteDto) {
         infrastructure.invoke().doUpdate(userInfoWriteDto);
+    }
+
+    public Page<UserInfoVo> listPage(final UserInfoQueryDto userInfoQueryDto) {
+        return infrastructure.listPage(userInfoQueryDto.toPage(), userInfoQueryDto);
     }
 }

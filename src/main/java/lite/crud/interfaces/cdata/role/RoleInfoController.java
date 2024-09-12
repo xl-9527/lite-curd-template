@@ -26,7 +26,7 @@ public class RoleInfoController {
     }
 
     @GetMapping("list")
-    public ApiResult<Page<RoleInfoVo>> list(RoleInfoQueryDto roleInfoQueryDto) {
-        return ApiResult.success(roleService.list(roleInfoQueryDto));
+    public ApiResult<Page<RoleInfoVo>> listPage(RoleInfoQueryDto roleInfoQueryDto) {
+        return ApiResult.success(roleService.listPage(roleInfoQueryDto));
     }
 }

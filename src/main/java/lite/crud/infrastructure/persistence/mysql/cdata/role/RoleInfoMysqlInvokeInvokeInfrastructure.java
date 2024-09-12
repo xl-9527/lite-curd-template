@@ -18,8 +18,8 @@ public class RoleInfoMysqlInvokeInvokeInfrastructure extends MysqlInvokeInfrastr
         super(crudService);
     }
 
-    public Page<RoleInfoVo> getPage(final Page<RoleInfoVo> page, final RoleInfoQueryDto roleInfoQueryDto) {
-        crudService.doQueryPage(page, roleInfoQueryDto);
+    public Page<RoleInfoVo> listPage(final Page<RoleInfoVo> page, final RoleInfoQueryDto roleInfoQueryDto) {
+        crudService.doQueryListPage(page, roleInfoQueryDto);
         return page;
     }
 }
