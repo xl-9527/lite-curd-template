@@ -28,8 +28,8 @@ public class RoleInfoPermissionCrudServiceSupport implements BizEventCrudService
     }
 
     @Override
-    public void doCreate(final RoleInfoPermission roleInfoPermission) {
-
+    public Boolean doSave(final RoleInfoPermission roleInfoPermission) {
+        return Boolean.TRUE;
     }
 
     @Override

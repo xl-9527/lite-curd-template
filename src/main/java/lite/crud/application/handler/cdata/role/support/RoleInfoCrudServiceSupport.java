@@ -26,8 +26,8 @@ public class RoleInfoCrudServiceSupport implements BizEventCrudService<RoleInfoV
     }
 
     @Override
-    public void doCreate(final RoleInfoWriteDto roleInfoWriteDto) {
-
+    public Boolean doSave(final RoleInfoWriteDto roleInfoWriteDto) {
+        return Boolean.TRUE;
     }
 
     @Override

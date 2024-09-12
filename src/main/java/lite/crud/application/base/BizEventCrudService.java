@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface BizEventCrudService<VO, DTO, QueryDto extends PageParams> extends BizEventService {
 
-    void doCreate(final DTO dto);
+    Boolean doSave(final DTO dto);
 
     void doUpdate(final DTO updateMap);
 

@@ -19,7 +19,7 @@ public interface UserInfoMapper {
 
     List<UserInfoVo> doQuery(Page<UserInfoVo> page, @Param("dto") UserInfoQueryDto userInfoQueryDto);
 
-    void insert(UserInfo dbBean);
+    Boolean doSave(UserInfo dbBean);
 
     int deleteByIds(List<Integer> ids);
 

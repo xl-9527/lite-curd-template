@@ -1,6 +1,8 @@
 package lite.crud.application.handler.cdata.role;
 
 import lite.crud.config.common.pojo.Page;
+import lite.crud.domain.cdata.role.bo.RoleInfo;
+import lite.crud.domain.cdata.role.bo.RoleInfoPermission;
 import lite.crud.domain.cdata.role.dto.RoleInfoPermissionQueryDto;
 import lite.crud.domain.cdata.role.vo.RoleInfoPermissionVo;
 import lite.crud.infrastructure.persistence.mysql.cdata.role.RoleInfoPermissionMysqlInvokeInfrastructure;
@@ -21,5 +23,9 @@ public class RoleInfoPermissionService {
 
     public Page<RoleInfoPermissionVo> queryListPage(final RoleInfoPermissionQueryDto roleInfoPermissionQueryDto) {
         return roleInfoPermissionMysqlInvokeInfrastructure.queryListPage(roleInfoPermissionQueryDto.toPage(), roleInfoPermissionQueryDto);
+    }
+
+    public Boolean save(final RoleInfoPermission roleInfoPermission) {
+        return roleInfoPermissionMysqlInvokeInfrastructure.invoke().doSave(roleInfoPermission);
     }
 }

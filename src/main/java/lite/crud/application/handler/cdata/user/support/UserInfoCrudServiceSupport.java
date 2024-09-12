@@ -32,8 +32,8 @@ public class UserInfoCrudServiceSupport implements BizEventCrudService<UserInfoV
     }
 
     @Override
-    public void doCreate(UserInfoWriteDto loginUserInfoQueryDto) {
-        userInfoMapper.insert(loginUserInfoQueryDto.toDbBean());
+    public Boolean doSave(UserInfoWriteDto loginUserInfoQueryDto) {
+        return userInfoMapper.doSave(loginUserInfoQueryDto.toDbBean());
     }
 
     @Override
