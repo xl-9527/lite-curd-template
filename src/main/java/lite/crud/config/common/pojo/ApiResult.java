@@ -39,7 +39,7 @@ public class ApiResult<T> {
      */
     private T data;
 
-    public static ApiResult<String> success() {
+    public static <T> ApiResult<T> success() {
         return new ApiResult<>(true, ResponseRestCode.OK, null, null);
     }
 

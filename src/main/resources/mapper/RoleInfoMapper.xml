@@ -2,19 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="lite.crud.infrastructure.persistence.mysql.cdata.role.RoleInfoMapper">
 
-    <select id="doQueryPage" resultType="lite.crud.domain.cdata.role.vo.RoleInfoVo">
+    <select id="doQueryListPage" resultType="lite.crud.domain.cdata.role.vo.RoleInfoVo">
         <include refid="COMMON_SELECT_LIST" />
     </select>
 
-    <select id="toQuery" resultType="lite.crud.domain.cdata.role.vo.RoleInfoVo">
+    <select id="doQuery" resultType="lite.crud.domain.cdata.role.vo.RoleInfoVo">
         <include refid="COMMON_SELECT_LIST" />
     </select>
 
 
     <sql id="COMMON_SELECT_LIST">
-        select * from role_info
+        select
+            id,
+            role_name,
+            description,
+            create_time,
+            update_time,
+            create_by,
+            update_by
+        from role_info
         <where>
 
         </where>
+        order by create_time
     </sql>
 </mapper>

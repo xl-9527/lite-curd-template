@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("list")
-    public ApiResult<Page<UserInfoVo>> listPage(UserInfoQueryDto userInfoQueryDto) {
-        return ApiResult.success(userInfoService.listPage(userInfoQueryDto));
+    public ApiResult<Page<UserInfoVo>> queryListPage(UserInfoQueryDto userInfoQueryDto) {
+        return ApiResult.success(userInfoService.queryListPage(userInfoQueryDto));
     }
 }

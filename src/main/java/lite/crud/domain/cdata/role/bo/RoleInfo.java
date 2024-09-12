@@ -4,15 +4,13 @@ import lite.crud.config.common.pojo.BaseDbField;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 /**
  * @author xl-9527
  * @since 2024/9/6
  */
 @Getter
 @Setter
-public class RoleInfo extends BaseDbField implements Serializable {
+public class RoleInfo extends BaseDbField {
 
     private Integer id;
 

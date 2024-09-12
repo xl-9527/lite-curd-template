@@ -15,7 +15,7 @@ import java.util.List;
 @Mapper
 public interface RoleInfoMapper {
 
-    List<RoleInfoVo> doQueryPage(Page<RoleInfoVo> page, @Param("dto") RoleInfoQueryDto roleInfoQueryDto);
+    List<RoleInfoVo> doQueryListPage(Page<RoleInfoVo> page, @Param("dto") RoleInfoQueryDto roleInfoQueryDto);
 
-    List<RoleInfoVo> toQuery(RoleInfoQueryDto roleInfoQueryDto);
+    List<RoleInfoVo> doQuery(RoleInfoQueryDto roleInfoQueryDto);
 }

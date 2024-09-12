@@ -18,7 +18,7 @@ public class UserInfoMysqlInvokeInfrastructure extends MysqlInvokeInfrastructure
         super(userInfoCrudServiceSupport);
     }
 
-    public Page<UserInfoVo> listPage(final Page<UserInfoVo> page, final UserInfoQueryDto userInfoQueryDto) {
+    public Page<UserInfoVo> queryListPage(final Page<UserInfoVo> page, final UserInfoQueryDto userInfoQueryDto) {
         crudService.doQueryListPage(page, userInfoQueryDto);
         return page;
     }

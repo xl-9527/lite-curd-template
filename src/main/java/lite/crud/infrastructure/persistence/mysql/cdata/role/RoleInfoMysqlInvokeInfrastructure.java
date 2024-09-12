@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
  * @since 2024/9/12
  **/
 @Service
-public class RoleInfoMysqlInvokeInvokeInfrastructure extends MysqlInvokeInfrastructure<RoleInfoCrudServiceSupport> {
+public class RoleInfoMysqlInvokeInfrastructure extends MysqlInvokeInfrastructure<RoleInfoCrudServiceSupport> {
 
-    public RoleInfoMysqlInvokeInvokeInfrastructure(final RoleInfoCrudServiceSupport crudService) {
+    public RoleInfoMysqlInvokeInfrastructure(final RoleInfoCrudServiceSupport crudService) {
         super(crudService);
     }
 
-    public Page<RoleInfoVo> listPage(final Page<RoleInfoVo> page, final RoleInfoQueryDto roleInfoQueryDto) {
+    public Page<RoleInfoVo> queryListPage(final Page<RoleInfoVo> page, final RoleInfoQueryDto roleInfoQueryDto) {
         crudService.doQueryListPage(page, roleInfoQueryDto);
         return page;
     }

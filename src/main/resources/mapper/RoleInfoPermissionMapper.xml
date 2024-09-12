@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lite.crud.infrastructure.persistence.mysql.cdata.role.RoleInfoPermissionMapper">
+
+    <sql id="COMMON_SQL">
+        select * from role_info_permission
+    </sql>
+
+    <sql id="COMMON_LIST_SQL">
+        <include refid="COMMON_SQL" />
+        <where>
+
+        </where>
+    </sql>
+
+    <delete id="delete">
+        delete from role_info_permission
+        where id in
+        <foreach collection="ids" close=")" item="item" open="(" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="getById" resultType="lite.crud.domain.cdata.role.vo.RoleInfoPermissionVo">
+        <include refid="COMMON_SQL" />
+        where id = #{id}
+    </select>
+
+    <select id="doQuery" resultType="lite.crud.domain.cdata.role.vo.RoleInfoPermissionVo">
+        <include refid="COMMON_LIST_SQL" />
+    </select>
+</mapper>

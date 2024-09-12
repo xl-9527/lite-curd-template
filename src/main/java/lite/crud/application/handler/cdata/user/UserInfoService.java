@@ -34,7 +34,7 @@ public class UserInfoService {
         infrastructure.invoke().doUpdate(userInfoWriteDto);
     }
 
-    public Page<UserInfoVo> listPage(final UserInfoQueryDto userInfoQueryDto) {
-        return infrastructure.listPage(userInfoQueryDto.toPage(), userInfoQueryDto);
+    public Page<UserInfoVo> queryListPage(final UserInfoQueryDto userInfoQueryDto) {
+        return infrastructure.queryListPage(userInfoQueryDto.toPage(), userInfoQueryDto);
     }
 }

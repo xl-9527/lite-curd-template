@@ -57,11 +57,11 @@ public class RoleInfoCrudServiceSupport implements BizEventCrudService<RoleInfoV
 
     @Override
     public List<RoleInfoVo> doQueryListPage(final Page<RoleInfoVo> page, final RoleInfoQueryDto roleInfoQueryDto) {
-        return roleInfoMapper.doQueryPage(page, roleInfoQueryDto);
+        return roleInfoMapper.doQueryListPage(page, roleInfoQueryDto);
     }
 
     @Override
     public List<RoleInfoVo> doQuery(final RoleInfoQueryDto roleInfoQueryDto) {
-        return roleInfoMapper.toQuery(roleInfoQueryDto);
+        return roleInfoMapper.doQuery(roleInfoQueryDto);
     }
 }

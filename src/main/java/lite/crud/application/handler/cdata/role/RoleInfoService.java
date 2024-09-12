@@ -3,7 +3,7 @@ package lite.crud.application.handler.cdata.role;
 import lite.crud.config.common.pojo.Page;
 import lite.crud.domain.cdata.role.dto.RoleInfoQueryDto;
 import lite.crud.domain.cdata.role.vo.RoleInfoVo;
-import lite.crud.infrastructure.persistence.mysql.cdata.role.RoleInfoMysqlInvokeInvokeInfrastructure;
+import lite.crud.infrastructure.persistence.mysql.cdata.role.RoleInfoMysqlInvokeInfrastructure;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleInfoService {
 
-    private final RoleInfoMysqlInvokeInvokeInfrastructure roleInfoMysqlInvokeInvokeInfrastructure;
+    private final RoleInfoMysqlInvokeInfrastructure roleInfoMysqlInvokeInfrastructure;
 
-    public RoleInfoService(final RoleInfoMysqlInvokeInvokeInfrastructure roleInfoMysqlInvokeInvokeInfrastructure) {
-        this.roleInfoMysqlInvokeInvokeInfrastructure = roleInfoMysqlInvokeInvokeInfrastructure;
+    public RoleInfoService(final RoleInfoMysqlInvokeInfrastructure roleInfoMysqlInvokeInfrastructure) {
+        this.roleInfoMysqlInvokeInfrastructure = roleInfoMysqlInvokeInfrastructure;
     }
 
-    public Page<RoleInfoVo> listPage(final RoleInfoQueryDto roleInfoQueryDto) {
-        return roleInfoMysqlInvokeInvokeInfrastructure.listPage(roleInfoQueryDto.toPage(), roleInfoQueryDto);
+    public Page<RoleInfoVo> queryListPage(final RoleInfoQueryDto roleInfoQueryDto) {
+        return roleInfoMysqlInvokeInfrastructure.queryListPage(roleInfoQueryDto.toPage(), roleInfoQueryDto);
     }
 }
