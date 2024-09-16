@@ -45,13 +45,13 @@ public class ExceptionHandlerController implements ApplicationContextAware {
             final ExceptionHandlerVo exceptionHandlerVo = ExceptionHandlerEnum.doHandler(e, applicationContext);
             finalResult = exceptionHandlerVo.getMsg();
         } catch (Exception ex) {
-            log.error("解析异常失败 -> {}", ex.getMessage());
+            log.error("resole exception error -> {}", ex.getMessage());
             finalResult = ex.getMessage();
         }
         try {
             systemErrorLogService.recordLog(e, finalResult, SystemErrorLogEnum.RESTFUL);
         } catch (Exception ex) {
-            log.error(ex.getMessage(), ex);
+            log.error("record log exception {}", ex.getMessage(), ex);
         }
         return ApiResult.fail(finalResult);
     }
