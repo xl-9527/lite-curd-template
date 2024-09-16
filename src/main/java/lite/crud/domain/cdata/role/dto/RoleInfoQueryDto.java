@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @author xl-9527
@@ -13,4 +14,16 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class RoleInfoQueryDto extends PageParams implements Serializable {
+
+    public RoleInfoQueryDto() {
+    }
+
+    public RoleInfoQueryDto(final LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    /**
+     * update time
+     */
+    private LocalDateTime updateTime;
 }

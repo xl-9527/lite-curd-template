@@ -1,7 +1,6 @@
 package lite.crud.application.handler.cdata.role;
 
 import lite.crud.config.common.pojo.Page;
-import lite.crud.domain.cdata.role.bo.RoleInfo;
 import lite.crud.domain.cdata.role.bo.RoleInfoPermission;
 import lite.crud.domain.cdata.role.dto.RoleInfoPermissionQueryDto;
 import lite.crud.domain.cdata.role.vo.RoleInfoPermissionVo;

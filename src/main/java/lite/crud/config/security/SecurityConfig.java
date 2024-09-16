@@ -1,11 +1,18 @@
 package lite.crud.config.security;
 
+import lite.crud.application.handler.cdata.role.RoleInfoPermissionService;
+import lite.crud.application.handler.cdata.role.RoleInfoService;
 import lite.crud.config.security.filter.SysAccessDeniedHandler;
 import lite.crud.config.security.filter.SysBasicAuthenticationEntryPoint;
 import lite.crud.config.security.filter.SysTokenFilter;
 import lite.crud.config.security.filter.SysUsernamePasswordAuthenticationFilter;
+import lite.crud.domain.cdata.role.dto.RoleInfoPermissionQueryDto;
+import lite.crud.domain.cdata.role.dto.RoleInfoQueryDto;
+import lite.crud.domain.cdata.role.vo.RoleInfoPermissionVo;
+import lite.crud.domain.cdata.role.vo.RoleInfoVo;
 import lite.crud.domain.sys.vo.LoginUserInfoVo;
 import lite.crud.infrastructure.persistence.redis.RedisInvokeInfrastructure;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,8 +35,11 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.RequestHeaderRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 
 /**
@@ -89,5 +99,43 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    /**
+     * dynamic refresh authentication information from database
+     */
+    @Component
+    public static class DynamicRefreshAuthentication {
+
+        private final RoleInfoService roleInfoService;
+        private final RoleInfoPermissionService roleInfoPermissionService;
+
+        public DynamicRefreshAuthentication(final RoleInfoService roleInfoService, final RoleInfoPermissionService roleInfoPermissionService) {
+            this.roleInfoService = roleInfoService;
+            this.roleInfoPermissionService = roleInfoPermissionService;
+        }
+
+        public List<RoleInfoPermissionVo> doGetPermissionInfo(final RoleInfoVo roleInfoVo) {
+            return roleInfoPermissionService.queryListPage(
+                    new RoleInfoPermissionQueryDto(roleInfoVo)
+            ).getRecord();
+        }
+
+        public List<RoleInfoVo> doGetRoleInfo(final LocalDateTime updateTime) {
+            return roleInfoService.queryListPage(
+                    new RoleInfoQueryDto(updateTime)
+            ).getRecord();
+        }
+
+        public List<RoleInfoVo> exec() {
+            final List<RoleInfoVo> roleInfoVos = this.doGetRoleInfo(LocalDateTime.now());
+            if (ObjectUtils.isNotEmpty(roleInfoVos)) {
+                for (final RoleInfoVo roleInfoVo : roleInfoVos) {
+                    final List<RoleInfoPermissionVo> roleInfoPermissionVos = this.doGetPermissionInfo(roleInfoVo);
+
+                }
+            }
+            return null;
+        }
     }
 }

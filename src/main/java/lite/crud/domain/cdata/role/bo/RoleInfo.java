@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * RoleInfoPermission update and update this table filed updateTime
+ *
  * @author xl-9527
  * @since 2024/9/6
  */
