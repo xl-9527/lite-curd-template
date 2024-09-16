@@ -1,10 +1,8 @@
 package lite.crud.domain.sys.log.bo;
 
-import lite.crud.application.util.extend.UserInfoUtil;
 import lite.crud.application.util.opc.json.JSONOpcUtil;
 import lite.crud.config.common.pojo.BaseDbField;
 import lite.crud.domain.sys.log.enums.SystemErrorLogEnum;
-import lite.crud.domain.sys.login.vo.LoginUserInfoVo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,7 +42,7 @@ public class SystemErrorLog extends BaseDbField {
         final SystemErrorLog systemErrorLog = new SystemErrorLog();
 
         final LocalDateTime now = LocalDateTime.now();
-        final String usernameAndCode = UserInfoUtil.getCurrentLoginUsernameAndCode();
+        final String usernameAndCode = systemErrorLogEnum.getUserCodeName();
 
         systemErrorLog.setId(null);
         systemErrorLog.setErrorType(systemErrorLogEnum.name());
