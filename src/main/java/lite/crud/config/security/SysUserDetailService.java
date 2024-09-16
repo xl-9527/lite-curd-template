@@ -2,8 +2,8 @@ package lite.crud.config.security;
 
 import lite.crud.application.handler.admin.login.LoginService;
 import lite.crud.config.common.constant.sys.user.LoginType;
-import lite.crud.domain.sys.dto.LoginDto;
-import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import lite.crud.domain.sys.login.dto.LoginDto;
+import lite.crud.domain.sys.login.vo.LoginUserInfoVo;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

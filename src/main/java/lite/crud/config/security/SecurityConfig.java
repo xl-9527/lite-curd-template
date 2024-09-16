@@ -10,7 +10,7 @@ import lite.crud.domain.cdata.role.dto.RoleInfoPermissionQueryDto;
 import lite.crud.domain.cdata.role.dto.RoleInfoQueryDto;
 import lite.crud.domain.cdata.role.vo.RoleInfoPermissionVo;
 import lite.crud.domain.cdata.role.vo.RoleInfoVo;
-import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import lite.crud.domain.sys.login.vo.LoginUserInfoVo;
 import lite.crud.infrastructure.persistence.redis.RedisInvokeInfrastructure;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.context.annotation.Bean;

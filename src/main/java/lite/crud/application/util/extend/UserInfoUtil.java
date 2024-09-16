@@ -1,6 +1,6 @@
 package lite.crud.application.util.extend;
 
-import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import lite.crud.domain.sys.login.vo.LoginUserInfoVo;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -23,5 +23,14 @@ public class UserInfoUtil {
         }
 
         throw new FailedLoginException("Unknown user");
+    }
+
+    public static String getCurrentLoginUsernameAndCode() {
+        try {
+            final LoginUserInfoVo currentLoginUserInfoVo = getCurrentLoginUserInfoVo();
+            return currentLoginUserInfoVo.getId() + "-" + currentLoginUserInfoVo.getUsername();
+        } catch (FailedLoginException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

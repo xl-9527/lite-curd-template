@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lite.crud.config.common.constant.redis.RedisConstant;
 import lite.crud.config.common.constant.sys.user.CustomRpcHeaderWithLogin;
-import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import lite.crud.domain.sys.login.vo.LoginUserInfoVo;
 import lite.crud.infrastructure.persistence.redis.HashOps;
 import lite.crud.infrastructure.persistence.redis.RedisInvokeInfrastructure;
 import org.apache.commons.lang3.ObjectUtils;

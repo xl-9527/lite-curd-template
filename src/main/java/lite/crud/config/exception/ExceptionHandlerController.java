@@ -1,9 +1,11 @@
 package lite.crud.config.exception;
 
+import lite.crud.application.handler.sys.log.SystemErrorLogService;
 import lite.crud.config.common.pojo.ApiResult;
 import lite.crud.config.exception.handler.ExceptionHandlerConfig;
 import lite.crud.config.exception.handler.ExceptionResolveHandler;
 import lite.crud.config.exception.vo.ExceptionHandlerVo;
+import lite.crud.domain.sys.log.enums.SystemErrorLogEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -23,7 +25,13 @@ public class ExceptionHandlerController implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
+    private final SystemErrorLogService systemErrorLogService;
+
     private final Logger log = LoggerFactory.getLogger(ExceptionHandlerController.class);
+
+    public ExceptionHandlerController(final SystemErrorLogService systemErrorLogService) {
+        this.systemErrorLogService = systemErrorLogService;
+    }
 
     /**
      * global exception handler
@@ -31,15 +39,21 @@ public class ExceptionHandlerController implements ApplicationContextAware {
     @ExceptionHandler(Exception.class)
     public ApiResult<String> globalExceptionHandler(final Exception e) {
         log.error("exception: ", e);
+        String finalResult = null;
 
         try {
             final ExceptionHandlerVo exceptionHandlerVo = ExceptionHandlerEnum.doHandler(e, applicationContext);
-            String msg = exceptionHandlerVo.getMsg();
-            return ApiResult.fail(msg);
+            finalResult = exceptionHandlerVo.getMsg();
         } catch (Exception ex) {
             log.error("解析异常失败 -> {}", ex.getMessage());
-            return ApiResult.fail(e.getMessage());
+            finalResult = ex.getMessage();
         }
+        try {
+            systemErrorLogService.recordLog(e, finalResult, SystemErrorLogEnum.RESTFUL);
+        } catch (Exception ex) {
+            log.error(ex.getMessage(), ex);
+        }
+        return ApiResult.fail(finalResult);
     }
 
     @Override

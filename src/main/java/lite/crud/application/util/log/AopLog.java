@@ -4,7 +4,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import lite.crud.application.util.extend.UserInfoUtil;
 import lite.crud.application.util.opc.json.JSONOpcUtil;
-import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import lite.crud.domain.sys.login.vo.LoginUserInfoVo;
 import org.apache.commons.lang3.ObjectUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

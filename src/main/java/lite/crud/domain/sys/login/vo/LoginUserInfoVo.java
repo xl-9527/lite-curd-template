@@ -1,4 +1,4 @@
-package lite.crud.domain.sys.vo;
+package lite.crud.domain.sys.login.vo;
 
 import lite.crud.domain.cdata.user.dto.UserInfoWriteDto;
 import lombok.Getter;

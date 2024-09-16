@@ -1,4 +1,4 @@
-package lite.crud.domain.sys.dto;
+package lite.crud.domain.sys.login.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import lite.crud.domain.cdata.user.dto.UserInfoQueryDto;

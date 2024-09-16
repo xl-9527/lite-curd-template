@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lite.crud.infrastructure.persistence.mysql.sys.log.SystemErrorLogMapper">
+    <sql id="COMMON_FIELD_SQL">
+        id, error_type, error_code, error_msg, error_detail, create_time, update_time, create_by, update_by
+    </sql>
+
+    <sql id="COMMON_SQL">
+        select
+        <include refid="COMMON_FIELD_SQL" />
+        from sys_error_log
+    </sql>
+
+    <insert id="doSave">
+        insert into sys_error_log
+        (<include refid="COMMON_FIELD_SQL" />) values
+        (#{errorCode}, #{errorMsg}, #{errorDetail}, #{createTime}, #{updateTime}, #{createBy}, #{updateBy})
+    </insert>
+</mapper>

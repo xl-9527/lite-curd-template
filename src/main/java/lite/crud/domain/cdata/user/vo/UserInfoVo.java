@@ -1,7 +1,7 @@
 package lite.crud.domain.cdata.user.vo;
 
 import lite.crud.config.security.SysGrantedAuthority;
-import lite.crud.domain.sys.vo.LoginUserInfoVo;
+import lite.crud.domain.sys.login.vo.LoginUserInfoVo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
