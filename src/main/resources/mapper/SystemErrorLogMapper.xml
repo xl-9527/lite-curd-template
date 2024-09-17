@@ -11,9 +11,21 @@
         from sys_error_log
     </sql>
 
+    <sql id="COMMON_LIST_SQL">
+        <include refid="COMMON_SQL"/>
+        <where>
+
+        </where>
+        order by id
+    </sql>
+
     <insert id="doSave">
         insert into sys_error_log
         (<include refid="COMMON_FIELD_SQL" />) values
-        (#{errorCode}, #{errorMsg}, #{errorDetail}, #{createTime}, #{updateTime}, #{createBy}, #{updateBy})
+        (null, #{errorType}, #{errorCode}, #{errorMsg}, #{errorDetail}, #{createTime}, #{updateTime}, #{createBy}, #{updateBy})
     </insert>
+
+    <select id="doQueryListPage" resultType="lite.crud.domain.sys.log.vo.SystemErrorLogVo">
+        <include refid="COMMON_LIST_SQL"/>
+    </select>
 </mapper>

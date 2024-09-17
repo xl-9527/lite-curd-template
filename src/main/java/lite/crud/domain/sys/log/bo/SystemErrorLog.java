@@ -5,6 +5,8 @@ import lite.crud.config.common.pojo.BaseDbField;
 import lite.crud.domain.sys.log.enums.SystemErrorLogEnum;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
 
@@ -26,7 +28,7 @@ public class SystemErrorLog extends BaseDbField {
     /**
      * system error code with custom
      */
-    private String errorCode;
+    private Integer errorCode;
 
     /**
      * exception's msg
@@ -45,9 +47,13 @@ public class SystemErrorLog extends BaseDbField {
         final String usernameAndCode = systemErrorLogEnum.getUserCodeName();
 
         systemErrorLog.setId(null);
+        systemErrorLog.setErrorCode(-1);
         systemErrorLog.setErrorType(systemErrorLogEnum.name());
-        systemErrorLog.setErrorCode(null);
-        systemErrorLog.setErrorMsg(finalResult);
+        if (ObjectUtils.isNotEmpty(finalResult)) {
+            systemErrorLog.setErrorMsg(finalResult.length() > 255 ? finalResult.substring(0, 255) : finalResult);
+        } else {
+            systemErrorLog.setErrorMsg(StringUtils.EMPTY);
+        }
         systemErrorLog.setErrorDetail(JSONOpcUtil.DEFAULT.toJSONStr(e.getStackTrace()));
         systemErrorLog.setCreateTime(now);
         systemErrorLog.setUpdateTime(now);
