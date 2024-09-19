@@ -1,15 +1,9 @@
 spring:
   application:
     name: lite-crud-template
-  docker:
-    compose:
-      host: 101.35.52.157
-      enabled: false # 关闭 docker compose
-  profiles:
-    active: local
 # MYSQL CONFIG
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/demo?allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/temp_crud?allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: ${mysql.password}
