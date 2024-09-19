@@ -3,7 +3,6 @@ package lite.crud.config.exception.handler;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -14,7 +13,7 @@ public class ExceptionHandlerConfig {
 
     private static final Map<Class<? extends Exception>, ExceptionResolveHandler<Exception>> EXCEPTION_MAP = new ConcurrentHashMap<>();
 
-
+    @SuppressWarnings("unchecked")
     public static void register(final Exception exception, final ExceptionResolveHandler handler) {
         EXCEPTION_MAP.put(exception.getClass(), handler);
     }
