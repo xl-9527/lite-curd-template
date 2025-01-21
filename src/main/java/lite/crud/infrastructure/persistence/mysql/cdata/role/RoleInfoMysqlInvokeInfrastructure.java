@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @since 2024/9/12
  **/
 @Service
-public class RoleInfoMysqlInvokeInfrastructure extends MysqlInvokeInfrastructure<RoleInfoCrudServiceSupport> {
+public class RoleInfoMysqlInvokeInfrastructure extends MysqlInvokeInfrastructure<RoleInfoQueryDto, RoleInfoVo, RoleInfoCrudServiceSupport> {
 
     public RoleInfoMysqlInvokeInfrastructure(final RoleInfoCrudServiceSupport crudService) {
         super(crudService);

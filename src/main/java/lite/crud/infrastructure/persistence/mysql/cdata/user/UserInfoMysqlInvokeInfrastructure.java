@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @since 2024/9/7
  **/
 @Service
-public class UserInfoMysqlInvokeInfrastructure extends MysqlInvokeInfrastructure<UserInfoCrudServiceSupport> {
+public class UserInfoMysqlInvokeInfrastructure extends MysqlInvokeInfrastructure<UserInfoQueryDto, UserInfoVo, UserInfoCrudServiceSupport> {
 
     public UserInfoMysqlInvokeInfrastructure(final UserInfoCrudServiceSupport userInfoCrudServiceSupport) {
         super(userInfoCrudServiceSupport);

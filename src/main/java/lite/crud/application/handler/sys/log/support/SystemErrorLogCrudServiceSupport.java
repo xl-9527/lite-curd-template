@@ -57,7 +57,7 @@ public class SystemErrorLogCrudServiceSupport implements BizEventCrudService<Sys
 
     @Override
     public List<SystemErrorLogVo> doQueryListPage(final Page<SystemErrorLogVo> page, final SystemErrorLogQueryDto systemErrorLogQueryDto) {
-        return List.of();
+        return systemErrorLogMapper.doQueryListPage(page, systemErrorLogQueryDto);
     }
 
     @Override
